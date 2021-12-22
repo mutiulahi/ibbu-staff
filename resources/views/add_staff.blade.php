@@ -50,19 +50,19 @@
                                                 <div class="col-sm-6">
                                                     <div class="mb-3">
                                                         <label for="productname">Name</label>
-                                                        <input id="productname" name="name" type="text" class="form-control">
+                                                        <input id="productname" name="name" type="text" placeholder="Fullname" class="form-control">
                                                     </div>
                                                     <div class="mb-3">
                                                         <label for="manufacturername">Rank</label>
-                                                        <input id="manufacturername" name="rank" type="text" class="form-control">
+                                                        <input id="manufacturername" name="rank" type="text" placeholder="Rank e.g (Burser) " class="form-control">
                                                     </div>
                                                     <div class="mb-3">
                                                         <label for="manufacturerbrand">Department</label>
-                                                        <input id="manufacturerbrand" name="department" type="text" class="form-control">
+                                                        <input id="manufacturerbrand" name="department" placeholder=" Department (e.g VC's office)" type="text" class="form-control">
                                                     </div>
                                                     <div class="mb-3">
                                                         <label for="price">PFN</label>
-                                                        <input id="price" name="pfn" type="number" class="form-control">
+                                                        <input id="price" name="pfn" type="number" placeholder="12323" class="form-control">
                                                     </div>
                                                 </div>
         
@@ -83,15 +83,17 @@
                                                      
                                                     <div class="mb-3">
                                                         <label class="control-label">State</label>
-                                                        <select class="form-control select2" name="sex">
+                                                        <select class="form-control select2" name="state">
                                                             <option>Select</option> 
+                                                            <option value="osun">osun</option>
                                                         </select>
                                                     </div>
                                                     
                                                     <div class="mb-3">
                                                         <label class="control-label">Local Government</label>
-                                                        <select class="form-control select2" name="sex">
+                                                        <select class="form-control select2" name="LG">
                                                             <option>Select</option> 
+                                                            <option value="iwo">Iwo</option>
                                                         </select>
                                                     </div>
 
@@ -102,7 +104,7 @@
                                                 <div class="col-sm-6">
                                                     <div class="mb-3">
                                                         <label for="qualification" class="control-label">Qualification</label>
-                                                        <input type="text" name="qualification" class="form-control">
+                                                        <input type="text" name="qualification" placeholder="Qualification (Bcs, MSC, M.Tech ...)" class="form-control">
                                                     </div>
 
                                                     <div class="mb-3">
@@ -118,7 +120,14 @@
                                                 <div class="col-sm-6">
                                                     <div class="mb-3">
                                                         <label for="qualification" class="control-label">Nature of Appointment</label>
-                                                        <input type="text" name="nature" class="form-control">
+                                                        {{-- <input type="text" name="nature"  class="form-control"> --}}
+                                                        <select class="form-control select2" name="nature">
+                                                            <option>Select</option> 
+                                                            <option value="tenure">TENURE</option>
+                                                            <option value="contract">CONTRACT</option>
+                                                            <option value="sabbatical">SABBATICAL</option>
+                                                            <option value="visiting">VISITING</option>
+                                                        </select>
                                                     </div>
                                                     <div class="mb-3">
                                                         <label for="qualification" class="control-label">Grade / Step</label>
@@ -128,6 +137,10 @@
                                                         <label for="qualification" class="control-label">Station</label>
                                                         <select class="form-control select2" name="Station">
                                                             <option>Select</option> 
+                                                            <option value="lapai">LAPAI</option>
+                                                            <option value="agaie"> AGAIE</option>
+                                                            <option value="new bussa">NEW BUSSA</option>
+                                                            <option value="ibeto">IBETO</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -240,5 +253,20 @@
 
     </body>
 
-<!-- Mirrored from themesbrand.com/skote/layouts/pages-starter.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 26 Aug 2021 01:33:41 GMT -->
-</html>
+    {{-- $table->string('name');
+            $table->string('rank');
+            $table->string('department');
+            $table->string('PFN');
+            $table->string('sex');
+            $table->string('DOB');
+            $table->string('state');
+            $table->string('LG');
+            $table->string('qualification');
+            $table->string('nature');
+            $table->string('date_first_appoint');
+            $table->string('date_present_appoint');
+            $table->string('grade_step');
+            $table->string('grade_step');
+            $table->string('station');
+            $table->string('status'); --}}
+ </html>
