@@ -1,5 +1,5 @@
 @extends('layout/head')
-@section('title','Login | IBBUL - Staff Admin Record')   
+@section('title','Add Staff | IBBUL - Staff Admin Record')   
 {{-- @endsection --}}
     <body data-sidebar="dark">
 
@@ -43,58 +43,109 @@
                                     <div class="card-body">
         
                                         <h4 class="card-title">Basic Information</h4>
-                                        <p class="card-title-desc">Fill all information below</p>
+                                        <p class="card-title-desc">Fill all information below (The starred (<span style="color: #e64b4b;">*</span>) filed are in important) </p>
+                                        @if (session('success'))
+                                            <center>
+                                                <div class="col-sm-6" style="text-align: center">
+                                                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                                        <i class="mdi mdi-check-all me-2"></i>
+                                                            {{session('success')}}
+                                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                                    </div>
+                                                </div>
+                                            </center>
+                                        @endif
+                                        
         
-                                        <form>
+                                        <form accept="{{route('add_staff')}}" method="POST">
+                                            @csrf
                                             <div class="row">
+
+                                                <div class="col-sm-12">
+                                                    <div class="mb-3">
+                                                        <label for="date-apoint">Email<span style="color: #e64b4b; margin-left: 5px;">*</span> </label>
+                                                        <input id="date-apoint" name="email" type="email" placeholder="Email (tescode@mail.com)" class="form-control" value="{{old('email')}}" @error('email') style="border-color:#e64b4b;" @enderror>
+                                                        @error('email')
+                                                            <span style="color:#e64b4b; font-size: 10px; margin-top:2px;">{{$message}}</span>    
+                                                        @enderror
+                                                    </div>
+                                                </div>
+
                                                 <div class="col-sm-6">
                                                     <div class="mb-3">
-                                                        <label for="productname">Name</label>
-                                                        <input id="productname" name="name" type="text" placeholder="Fullname" class="form-control">
+                                                        <label for="productname">Name <span style="color: #e64b4b; margin-left: 5px;">*</span> </label>
+                                                        <input id="productname" name="name" type="text" placeholder="Fullname" class="form-control" value="{{old('name')}}"  @error('name') style="border-color:#e64b4b;" @enderror>
+                                                        @error('name')
+                                                            <span style="color:#e64b4b; font-size: 10px; margin-top:2px;">{{$message}}</span>    
+                                                        @enderror
                                                     </div>
+
                                                     <div class="mb-3">
-                                                        <label for="manufacturername">Rank</label>
-                                                        <input id="manufacturername" name="rank" type="text" placeholder="Rank e.g (Burser) " class="form-control">
+                                                        <label for="manufacturername">Rank <span style="color: #e64b4b; margin-left: 5px;">*</span> </label>
+                                                        <input id="manufacturername" name="rank" type="text" placeholder="Rank e.g (Burser) " class="form-control" value="{{old('rank')}}"  @error('rank') style="border-color:#e64b4b;" @enderror>
+                                                        @error('rank')
+                                                            <span style="color:#e64b4b; font-size: 10px; margin-top:2px;">{{$message}}</span>    
+                                                        @enderror
                                                     </div>
+
                                                     <div class="mb-3">
-                                                        <label for="manufacturerbrand">Department</label>
-                                                        <input id="manufacturerbrand" name="department" placeholder=" Department (e.g VC's office)" type="text" class="form-control">
+                                                        <label for="manufacturerbrand">Department <span style="color: #e64b4b; margin-left: 5px;">*</span> </label>
+                                                        <input id="manufacturerbrand" name="department" placeholder=" Department (e.g VC's office)" type="text" class="form-control" value="{{old('department')}}" @error('department') style="border-color:#e64b4b;" @enderror>
+                                                        @error('department')
+                                                            <span style="color:#e64b4b; font-size: 10px; margin-top:2px;">{{$message}}</span>    
+                                                        @enderror
                                                     </div>
+                                                    
                                                     <div class="mb-3">
-                                                        <label for="price">PFN</label>
-                                                        <input id="price" name="pfn" type="number" placeholder="12323" class="form-control">
+                                                        <label for="price">PFN <span style="color: #e64b4b; margin-left: 5px;">*</span> </label>
+                                                        <input id="price" name="pfn" type="number" placeholder="12323" class="form-control" value="{{old('pfn')}}" @error('pfn') style="border-color:#e64b4b;" @enderror>
+                                                        @error('pfn')
+                                                            <span style="color:#e64b4b; font-size: 10px; margin-top:2px;">{{$message}}</span>    
+                                                        @enderror
                                                     </div>
                                                 </div>
         
                                                 <div class="col-sm-6">
                                                     <div class="mb-3">
-                                                        <label class="control-label">Sex</label>
-                                                        <select class="form-control select2" name="sex">
-                                                            <option>Select</option>
+                                                        <label class="control-label">Sex <span style="color: #e64b4b; margin-left: 5px;">*</span> </label>
+                                                        <select  class="col-md-12 form-control select2" name="sex" value="{{old('sex')}}" @error('sex')  style="border-color:#e64b4b;" @enderror>
+                                                            <option value="" >Select</option>
                                                             <option value="male">Male</option>
                                                             <option value="female">Female</option>
                                                         </select>
+                                                        @error('sex')
+                                                            <span style="color:#e64b4b; font-size: 10px; margin-top:2px;">{{$message}}</span>    
+                                                        @enderror
                                                     </div>
 
                                                     <div class="mb-3">
-                                                        <label for="price">Date of Birth</label>
-                                                        <input id="price" name="DOB" type="date" class="form-control">
+                                                        <label for="price">Date of Birth <span style="color: #e64b4b; margin-left: 5px;">*</span> </label>
+                                                        <input id="price" name="date_of_birth" type="date" class="form-control" value="{{old('date_of_birth')}}"  @error('date_of_birth') style="border-color:#e64b4b;" @enderror>
+                                                        @error('date_of_birth')
+                                                            <span style="color:#e64b4b; font-size: 10px; margin-top:2px;">{{$message}}</span>    
+                                                        @enderror
                                                     </div>
                                                      
                                                     <div class="mb-3">
-                                                        <label class="control-label">State</label>
-                                                        <select class="form-control select2" name="state">
-                                                            <option>Select</option> 
+                                                        <label class="control-label">State <span style="color: #e64b4b; margin-left: 5px;">*</span> </label>
+                                                        <select  class="col-md-12 form-control select2" name="state" value="{{old('state')}}" @error('state')  style="border-color:#e64b4b;" @enderror>
+                                                            <option value="">Select</option> 
                                                             <option value="osun">osun</option>
                                                         </select>
+                                                        @error('state')
+                                                            <span style="color:#e64b4b; font-size: 10px; margin-top:2px;">{{$message}}</span>    
+                                                        @enderror
                                                     </div>
                                                     
                                                     <div class="mb-3">
-                                                        <label class="control-label">Local Government</label>
-                                                        <select class="form-control select2" name="LG">
-                                                            <option>Select</option> 
+                                                        <label class="control-label">Local Government <span style="color: #e64b4b; margin-left: 5px;">*</span> </label>
+                                                        <select  class="col-md-12 form-control select2" name="local_government" value="{{old('local_government')}}" @error('local_government')  style="border-color:#e64b4b;" @enderror>
+                                                            <option value="">Select</option> 
                                                             <option value="iwo">Iwo</option>
                                                         </select>
+                                                        @error('local_government')
+                                                            <span style="color:#e64b4b; font-size: 10px; margin-top:2px;">{{$message}}</span>    
+                                                        @enderror
                                                     </div>
 
                                                 </div>
@@ -103,45 +154,120 @@
                                             <div class="row">
                                                 <div class="col-sm-6">
                                                     <div class="mb-3">
-                                                        <label for="qualification" class="control-label">Qualification</label>
-                                                        <input type="text" name="qualification" placeholder="Qualification (Bcs, MSC, M.Tech ...)" class="form-control">
+                                                        <label class="form-label">Qualification <span style="color: #e64b4b; margin-left: 5px;">*</span></label>
+                                                        <select  class="col-md-12 select2 form-control select2-multiple" name="qualification[]" multiple="multiple" data-placeholder="Choose ..." value="{{old('qualification')}}" @error('qualification') style="border-color:#e64b4b;" @enderror>
+                                                            <optgroup label="Alaskan/Hawaiian Time Zone">
+                                                                <option value="AK">Alaska</option>
+                                                                <option value="HI">Hawaii</option>
+                                                            </optgroup>
+                                                            <optgroup label="Pacific Time Zone">
+                                                                <option value="CA">California</option>
+                                                                <option value="NV">Nevada</option>
+                                                                <option value="OR">Oregon</option>
+                                                                <option value="WA">Washington</option>
+                                                            </optgroup>
+                                                            <optgroup label="Mountain Time Zone">
+                                                                <option value="AZ">Arizona</option>
+                                                                <option value="CO">Colorado</option>
+                                                                <option value="ID">Idaho</option>
+                                                                <option value="MT">Montana</option>
+                                                                <option value="NE">Nebraska</option>
+                                                                <option value="NM">New Mexico</option>
+                                                                <option value="ND">North Dakota</option>
+                                                                <option value="UT">Utah</option>
+                                                                <option value="WY">Wyoming</option>
+                                                            </optgroup>
+                                                            <optgroup label="Central Time Zone">
+                                                                <option value="AL">Alabama</option>
+                                                                <option value="AR">Arkansas</option>
+                                                                <option value="IL">Illinois</option>
+                                                                <option value="IA">Iowa</option>
+                                                                <option value="KS">Kansas</option>
+                                                                <option value="KY">Kentucky</option>
+                                                                <option value="LA">Louisiana</option>
+                                                                <option value="MN">Minnesota</option>
+                                                                <option value="MS">Mississippi</option>
+                                                                <option value="MO">Missouri</option>
+                                                                <option value="OK">Oklahoma</option>
+                                                                <option value="SD">South Dakota</option>
+                                                                <option value="TX">Texas</option>
+                                                                <option value="TN">Tennessee</option>
+                                                                <option value="WI">Wisconsin</option>
+                                                            </optgroup>
+                                                            <optgroup label="Eastern Time Zone">
+                                                                <option value="CT">Connecticut</option>
+                                                                <option value="DE">Delaware</option>
+                                                                <option value="FL">Florida</option>
+                                                                <option value="GA">Georgia</option>
+                                                                <option value="IN">Indiana</option>
+                                                                <option value="ME">Maine</option>
+                                                                <option value="MD">Maryland</option>
+                                                                <option value="MA">Massachusetts</option>
+                                                                <option value="MI">Michigan</option>
+                                                                <option value="NH">New Hampshire</option>
+                                                                <option value="NJ">New Jersey</option>
+                                                                <option value="NY">New York</option>
+                                                                <option value="NC">North Carolina</option>
+                                                                <option value="OH">Ohio</option>
+                                                                <option value="PA">Pennsylvania</option>
+                                                                <option value="RI">Rhode Island</option>
+                                                                <option value="SC">South Carolina</option>
+                                                                <option value="VT">Vermont</option>
+                                                                <option value="VA">Virginia</option>
+                                                                <option value="WV">West Virginia</option>
+                                                            </optgroup>
+                                                        </select> 
+                                                        @error('qualification')
+                                                            <span style="color:#e64b4b; font-size: 10px; margin-top:2px;">{{$message}}</span>    
+                                                        @enderror
                                                     </div>
 
                                                     <div class="mb-3">
-                                                        <label for="date-apoint">Date of First Appointment</label>
-                                                        <input id="date-apoint" name="date_first_appoint" type="date" class="form-control">
+                                                        <label for="date-apoint">Date of First Appointment <span style="color: #e64b4b; margin-left: 5px;">*</span> </label>
+                                                        <input id="date-apoint" name="date_first_appoint" type="date" class="form-control" value="{{old('date_first_appoint')}}" @error('date_first_appoint') style="border-color:#e64b4b;" @enderror>
+                                                        @error('date_first_appoint')
+                                                            <span style="color:#e64b4b; font-size: 10px; margin-top:2px;">{{$message}}</span>    
+                                                        @enderror
                                                     </div>
 
                                                     <div class="mb-3">
-                                                        <label for="date-apoint">Date of Present Appointment</label>
-                                                        <input id="date-apoint" name="date_present_appoint" type="date" class="form-control">
+                                                        <label for="date-apoint">Date of Present Appointment <span style="color: #e64b4b; margin-left: 5px;">*</span> </label>
+                                                        <input id="date-apoint" name="date_present_appoint" type="date" class="form-control" value="{{old('date_present_appoint')}}" @error('date_present_appoint') style="border-color:#e64b4b;" @enderror>
                                                     </div>
+                                                    @error('date_present_appoint')
+                                                        <span style="color:#e64b4b; font-size: 10px; margin-top:2px;">{{$message}}</span>    
+                                                    @enderror
                                                 </div> 
                                                 <div class="col-sm-6">
                                                     <div class="mb-3">
-                                                        <label for="qualification" class="control-label">Nature of Appointment</label>
-                                                        {{-- <input type="text" name="nature"  class="form-control"> --}}
-                                                        <select class="form-control select2" name="nature">
-                                                            <option>Select</option> 
+                                                        <label for="qualification" class="control-label">Nature of Appointment <span style="color: #e64b4b; margin-left: 5px;">*</span> </label>
+                                                        <select  class="col-md-12 form-control select2" name="nature" value="{{old('nature')}}" @error('nature') style="border-color:#e64b4b;" @enderror>
+                                                            <option value="">Select</option> 
                                                             <option value="tenure">TENURE</option>
                                                             <option value="contract">CONTRACT</option>
                                                             <option value="sabbatical">SABBATICAL</option>
                                                             <option value="visiting">VISITING</option>
                                                         </select>
+                                                        @error('nature')
+                                                            <span style="color:#e64b4b; font-size: 10px; margin-top:2px;">{{$message}}</span>    
+                                                        @enderror
                                                     </div>
                                                     <div class="mb-3">
-                                                        <label for="qualification" class="control-label">Grade / Step</label>
-                                                        <input type="text" name="grade_step" class="form-control">
+                                                        <label for="qualification" class="control-label">Grade / Step <span style="color: #e64b4b; margin-left: 5px;">*</span> </label>
+                                                        <input type="text" name="grade_step" class="form-control" value="{{old('name')}}" @error('name') style="border-color:#e64b4b;" @enderror>
                                                     </div>
                                                     <div class="mb-3">
-                                                        <label for="qualification" class="control-label">Station</label>
-                                                        <select class="form-control select2" name="Station">
-                                                            <option>Select</option> 
+                                                        <label for="qualification" class="control-label">Station <span style="color: #e64b4b; margin-left: 5px;">*</span> </label>
+                                                        <select  class="col-md-12 form-control select2" name="station"  value="{{old('station')}}" @error('station') style="border-color:#e64b4b;" @enderror>
+                                                            <option value="">Select</option> 
                                                             <option value="lapai">LAPAI</option>
                                                             <option value="agaie"> AGAIE</option>
                                                             <option value="new bussa">NEW BUSSA</option>
                                                             <option value="ibeto">IBETO</option>
                                                         </select>
+                                                        @error('station')
+                                                            <span style="color:#e64b4b; font-size: 10px; margin-top:2px;">{{$message}}</span>    
+                                                        @enderror
                                                     </div>
                                                 </div>
                                             </div>
@@ -180,67 +306,10 @@
             <!-- end main content-->
 
         </div>
-        <!-- END layout-wrapper -->
-
-        <!-- Right Sidebar -->
-        {{-- <div class="right-bar">
-            <div data-simplebar class="h-100">
-                <div class="rightbar-title d-flex align-items-center px-3 py-4">
-            
-                    <h5 class="m-0 me-2">Settings</h5>
-
-                    <a href="javascript:void(0);" class="right-bar-toggle ms-auto">
-                        <i class="mdi mdi-close noti-icon"></i>
-                    </a>
-                </div>
-
-                <!-- Settings -->
-                <hr class="mt-0" />
-                <h6 class="text-center mb-0">Choose Layouts</h6>
-
-                <div class="p-4">
-                    <div class="mb-2">
-                        <img src="assets/images/layouts/layout-1.jpg" class="img-thumbnail" alt="layout images">
-                    </div>
-
-                    <div class="form-check form-switch mb-3">
-                        <input class="form-check-input theme-choice" type="checkbox" id="light-mode-switch" checked>
-                        <label class="form-check-label" for="light-mode-switch">Light Mode</label>
-                    </div>
-    
-                    <div class="mb-2">
-                        <img src="assets/images/layouts/layout-2.jpg" class="img-thumbnail" alt="layout images">
-                    </div>
-                    <div class="form-check form-switch mb-3">
-                        <input class="form-check-input theme-choice" type="checkbox" id="dark-mode-switch">
-                        <label class="form-check-label" for="dark-mode-switch">Dark Mode</label>
-                    </div>
-    
-                    <div class="mb-2">
-                        <img src="assets/images/layouts/layout-3.jpg" class="img-thumbnail" alt="layout images">
-                    </div>
-                    <div class="form-check form-switch mb-3">
-                        <input class="form-check-input theme-choice" type="checkbox" id="rtl-mode-switch">
-                        <label class="form-check-label" for="rtl-mode-switch">RTL Mode</label>
-                    </div>
-
-                    <div class="mb-2">
-                        <img src="assets/images/layouts/layout-4.jpg" class="img-thumbnail" alt="layout images">
-                    </div>
-                    <div class="form-check form-switch mb-5">
-                        <input class="form-check-input theme-choice" type="checkbox" id="dark-rtl-mode-switch">
-                        <label class="form-check-label" for="dark-rtl-mode-switch">Dark RTL Mode</label>
-                    </div>
-
-            
-                </div>
-
-            </div> <!-- end slimscroll-menu-->
-        </div> --}}
-        <!-- /Right-bar -->
+       
 
         <!-- Right bar overlay-->
-        <div class="rightbar-overlay"></div>
+   
 
         <!-- JAVASCRIPT -->
         <script src="{{asset('assets/libs/jquery/jquery.min.js')}}"></script>
@@ -249,24 +318,31 @@
         <script src="{{asset('assets/libs/simplebar/simplebar.min.js')}}"></script>
         <script src="{{asset('assets/libs/node-waves/waves.min.js')}}"></script>
 
+        <!-- Required datatable js -->
+        <script src="{{asset('assets/libs/datatables.net/js/jquery.dataTables.min.js')}}"></script>
+        <script src="{{asset('assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
+        <!-- Buttons examples -->
+        <script src="{{asset('assets/libs/datatables.net-buttons/js/dataTables.buttons.min.js')}}"></script>
+        <script src="{{asset('assets/libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js')}}"></script>
+        <script src="{{asset('assets/libs/jszip/jszip.min.js')}}"></script>
+        <script src="{{asset('assets/libs/pdfmake/build/pdfmake.min.js')}}"></script>
+        <script src="{{asset('assets/libs/pdfmake/build/vfs_fonts.js')}}"></script>
+        <script src="{{asset('assets/libs/datatables.net-buttons/js/buttons.html5.min.js')}}"></script>
+        <script src="{{asset('assets/libs/datatables.net-buttons/js/buttons.print.min.js')}}"></script>
+        <script src="{{asset('assets/libs/datatables.net-buttons/js/buttons.colVis.min.js')}}"></script>
+        
+        <!-- Responsive examples -->
+        <script src="{{asset('assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js')}}"></script>
+        <script src="{{asset('assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js')}}"></script>
+
+        <!-- Datatable init js -->
+        <script src="{{asset('assets/js/pages/datatables.init.js')}}"></script>    
+        <script src="{{asset('assets/libs/select2/js/select2.min.js')}}"></script>
+
+        <script src="{{asset('assets/js/pages/form-advanced.init.js')}}"></script>
+
+
         <script src="{{asset('assets/js/app.js')}}"></script>
 
-    </body>
-
-    {{-- $table->string('name');
-            $table->string('rank');
-            $table->string('department');
-            $table->string('PFN');
-            $table->string('sex');
-            $table->string('DOB');
-            $table->string('state');
-            $table->string('LG');
-            $table->string('qualification');
-            $table->string('nature');
-            $table->string('date_first_appoint');
-            $table->string('date_present_appoint');
-            $table->string('grade_step');
-            $table->string('grade_step');
-            $table->string('station');
-            $table->string('status'); --}}
+    </body> 
  </html>

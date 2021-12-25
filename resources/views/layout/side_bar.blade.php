@@ -28,7 +28,7 @@
                         <span key="t-contacts">Staff</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false"> 
-                        <li><a href="contacts-list.html" key="t-user-list">Staff List</a></li>
+                        <li><a href="{{route('view_staff')}}" key="t-user-list">Staff List</a></li>
                         <li><a href="{{route('add_staff')}}" key="t-profile">Add Staff</a></li>
                     </ul>
                 </li> 
