@@ -50,9 +50,10 @@
                                             <thead>
                                             <tr>
                                                 <th>NO</th>
-                                                <th>Status</th>
                                                 <th>Action</th>
+                                                <th>Status</th>
                                                 <th>Name</th>
+                                                <th>Grade/Step</th>
                                                 <th>Sex</th>
                                                 <th>PFN</th>
                                                 <th>Rank</th>
@@ -73,12 +74,13 @@
                                                 @foreach ($fetch_staff as $staff_details)
                                                     <tr>
                                                         <td>{{$count++}}</td>
-                                                        <td>{{$staff_details->status}}</td>
                                                         <td>
-                                                            <button class="btn btn-sm btn-danger">Deactivate</button> 
-                                                            <button class="btn btn-sm btn-success">active</button>
+                                                            <button class="btn btn-sm btn-danger"> <i class="fas fa-window-close"></i></button> 
+                                                            <button class="btn btn-sm btn-success"><i class="fas fa-check-circle"></i></button>
                                                         </td>
+                                                        <td>{{$staff_details->status}}</td>
                                                         <td>{{$staff_details->name}}</td>
+                                                        <td>{{$staff_details->grade_step}}</td>
                                                         <td>{{$staff_details->sex}}</td>
                                                         <td>{{$staff_details->PFN}}</td>
                                                         <td>{{$staff_details->rank}}</td>

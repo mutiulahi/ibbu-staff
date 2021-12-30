@@ -40,9 +40,9 @@
                         <span key="t-contacts">Staff Promotion</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false"> 
-                        <li><a href="contacts-list.html" key="t-user-list">Applications</a></li>
-                        <li><a href="contacts-profile.html" key="t-profile">Approved Application</a></li>
-                        <li><a href="contacts-profile.html" key="t-profile">Generate Application</a></li>
+                        <li><a href="{{route('applied')}}" key="t-user-list">Applications</a></li>
+                        <li><a href="{{route('accept')}}" key="t-profile">Approved Application</a></li>
+                        {{-- <li><a href="contacts-profile.html" key="t-profile">Generate Application</a></li> --}}
 
                     </ul>
                 </li> 

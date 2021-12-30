@@ -4,13 +4,20 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Staff;
+use App\Models\Page;
 use Illuminate\Support\Facades\DB;
 
 class Dashboard extends Controller
 {
     public function index()
     {
-        return view('dashboard');
+        $select_me = DB::table('pages')->get();
+        $total_app_prom = DB::table('applications')->count();
+        $staff = DB::table('staff')->count();
+        $total_app_accept = DB::table('applications')->where('app_status','accept')->count();
+        $total_app_reject = DB::table('applications')->where('app_status','reject')->count();
+        return view('dashboard',compact('select_me'),['staff'=>$staff,'total_app_prom'=>$total_app_prom, 'total_app_accept'=>$total_app_accept, 'total_app_reject'=>$total_app_reject]);
+
     }
 
     // add staff index
@@ -36,7 +43,8 @@ class Dashboard extends Controller
             'nature' => 'required',
             'date_first_appoint' => 'required',
             'date_present_appoint' => 'required',
-            'grade_step' => 'required',
+            'grade' => 'required',
+            'step' => 'required',
             'station' => 'required',
         ]);
         $qualifications = '';
@@ -59,7 +67,7 @@ class Dashboard extends Controller
         $save_staff_details->nature = $staff_details->nature;
         $save_staff_details->date_first_appoint = $staff_details->date_first_appoint;
         $save_staff_details->date_present_appoint = $staff_details->date_present_appoint;
-        $save_staff_details->grade_step = $staff_details->grade_step;
+        $save_staff_details->grade_step = 'Grade'.$staff_details->grade.'/Step'.$staff_details->step;
         $save_staff_details->station = $staff_details->station;
         $save_staff_details->status = "active";
         $save_staff_details->save();
@@ -73,5 +81,22 @@ class Dashboard extends Controller
         $fetch_staff = DB::table('staff')->get();
 
         return view('view_staff', ['fetch_staff' => $fetch_staff]);
+    }
+
+    //activate and deactivate promotion page
+    public function promo_page(Request $page_status)
+    {
+        $status = $page_status->status;
+        $select_me = DB::table('pages')->get();
+        if (sizeof($select_me)>0) {
+            $promotion_pages = DB::table('pages') 
+                ->update(['promotion_page' =>$status]);
+        }else {
+            $save_status = new Page;
+            $save_status->promotion_page = $status;
+            $save_status->save();
+        }
+        return redirect()->back();
+
     }
 }

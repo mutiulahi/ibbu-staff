@@ -1,8 +1,5 @@
 <!doctype html>
 <html lang="en">
-
-    
-<!-- Mirrored from themesbrand.com/skote/layouts/crypto-ico-landing.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 26 Aug 2021 01:33:17 GMT -->
 <head>
         
         <meta charset="utf-8" />
@@ -89,7 +86,7 @@
                                                     </div>
                                                 </div>
                                             </center> 
-                                            <button type="submit" class="btn btn-success w-md">Get Token</button>
+                                            <button type="submit" class="btn btn-success w-md">APPLY</button>
                                         </div>
                                    </form> 
                                 </div>

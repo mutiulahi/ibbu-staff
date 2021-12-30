@@ -108,7 +108,7 @@
                                                 <div class="col-sm-6">
                                                     <div class="mb-3">
                                                         <label class="control-label">Sex <span style="color: #e64b4b; margin-left: 5px;">*</span> </label>
-                                                        <select  class="col-md-12 form-control select2" name="sex" value="{{old('sex')}}" @error('sex')  style="border-color:#e64b4b;" @enderror>
+                                                        <select style="width: 100%;" class="col-md-12 form-control select2" name="sex" value="{{old('sex')}}" @error('sex')  style="border-color:#e64b4b;" @enderror>
                                                             <option value="" >Select</option>
                                                             <option value="male">Male</option>
                                                             <option value="female">Female</option>
@@ -128,24 +128,32 @@
                                                      
                                                     <div class="mb-3">
                                                         <label class="control-label">State <span style="color: #e64b4b; margin-left: 5px;">*</span> </label>
-                                                        <select  class="col-md-12 form-control select2" name="state" value="{{old('state')}}" @error('state')  style="border-color:#e64b4b;" @enderror>
+                                                        <input id="price" name="state" type="text" class="form-control" placeholder="State" value="{{old('state')}}"   @error('state') style="border-color:#e64b4b;" @enderror>
+                                                        @error('state')
+                                                            <span style="color:#e64b4b; font-size: 10px; margin-top:2px;">{{$message}}</span>    
+                                                        @enderror
+                                                        {{-- <select style="width: 100%;" class="col-md-12 form-control select2" name="state" value="{{old('state')}}" @error('state')  style="border-color:#e64b4b;" @enderror>
                                                             <option value="">Select</option> 
                                                             <option value="osun">osun</option>
                                                         </select>
                                                         @error('state')
                                                             <span style="color:#e64b4b; font-size: 10px; margin-top:2px;">{{$message}}</span>    
-                                                        @enderror
+                                                        @enderror --}}
                                                     </div>
                                                     
                                                     <div class="mb-3">
-                                                        <label class="control-label">Local Government <span style="color: #e64b4b; margin-left: 5px;">*</span> </label>
-                                                        <select  class="col-md-12 form-control select2" name="local_government" value="{{old('local_government')}}" @error('local_government')  style="border-color:#e64b4b;" @enderror>
+                                                        <label class="control-label">Local Government Area <span style="color: #e64b4b; margin-left: 5px;">*</span> </label>
+                                                        <input id="price" name="local_government" type="text" class="form-control" placeholder="Local Government Area" value="{{old('local_government')}}"  @error('local_government') style="border-color:#e64b4b;" @enderror>
+                                                        @error('local_government')
+                                                            <span style="color:#e64b4b; font-size: 10px; margin-top:2px;">{{$message}}</span>    
+                                                        @enderror
+                                                        {{-- <select style="width: 100%;" class="col-md-12 form-control select2" name="local_government" value="{{old('local_government')}}" @error('local_government')  style="border-color:#e64b4b;" @enderror>
                                                             <option value="">Select</option> 
                                                             <option value="iwo">Iwo</option>
                                                         </select>
                                                         @error('local_government')
                                                             <span style="color:#e64b4b; font-size: 10px; margin-top:2px;">{{$message}}</span>    
-                                                        @enderror
+                                                        @enderror --}}
                                                     </div>
 
                                                 </div>
@@ -155,7 +163,7 @@
                                                 <div class="col-sm-6">
                                                     <div class="mb-3">
                                                         <label class="form-label">Qualification <span style="color: #e64b4b; margin-left: 5px;">*</span></label>
-                                                        <select  class="col-md-12 select2 form-control select2-multiple" name="qualification[]" multiple="multiple" data-placeholder="Choose ..." value="{{old('qualification')}}" @error('qualification') style="border-color:#e64b4b;" @enderror>
+                                                        <select style="width: 100%; @error('qualification') border-color:#e64b4b; @enderror" class="col-md-12 select2 form-control select2-multiple" name="qualification[]" multiple="multiple" data-placeholder="Choose ..." value="{{old('qualification')}}" @error('qualification') style="border-color:#e64b4b;" @enderror>
                                                             <optgroup label="Alaskan/Hawaiian Time Zone">
                                                                 <option value="AK">Alaska</option>
                                                                 <option value="HI">Hawaii</option>
@@ -241,7 +249,7 @@
                                                 <div class="col-sm-6">
                                                     <div class="mb-3">
                                                         <label for="qualification" class="control-label">Nature of Appointment <span style="color: #e64b4b; margin-left: 5px;">*</span> </label>
-                                                        <select  class="col-md-12 form-control select2" name="nature" value="{{old('nature')}}" @error('nature') style="border-color:#e64b4b;" @enderror>
+                                                        <select style="width: 100%  @error('nature') border-color:#e64b4b; @enderror" class="col-md-12 form-control select2" name="nature" value="{{old('nature')}}" @error('nature') style="border-color:#e64b4b;" @enderror>
                                                             <option value="">Select</option> 
                                                             <option value="tenure">TENURE</option>
                                                             <option value="contract">CONTRACT</option>
@@ -252,13 +260,24 @@
                                                             <span style="color:#e64b4b; font-size: 10px; margin-top:2px;">{{$message}}</span>    
                                                         @enderror
                                                     </div>
+
                                                     <div class="mb-3">
                                                         <label for="qualification" class="control-label">Grade / Step <span style="color: #e64b4b; margin-left: 5px;">*</span> </label>
-                                                        <input type="text" name="grade_step" class="form-control" value="{{old('name')}}" @error('name') style="border-color:#e64b4b;" @enderror>
+                                                        <div class="input-daterange input-group" id="datepicker6" data-date-format="dd M, yyyy" data-date-autoclose="true" data-provide="datepicker" data-date-container='#datepicker6'>
+                                                            <input type="number" class="form-control" name="grade" placeholder="Grade" value="{{old('grade')}}" @error('grade') style="border-color:#e64b4b;" @enderror/>
+                                                            <input type="number" class="form-control" name="step" placeholder="Step" value="{{old('step')}}" @error('step') style="border-color:#e64b4b;" @enderror/>
+                                                        </div>
+                                                        @error('grade')
+                                                            <span style="color:#e64b4b; font-size: 10px; margin-top:2px;">{{$message}}</span>,
+                                                        @enderror
+                                                        @error('step')
+                                                            <span style="color:#e64b4b; font-size: 10px; margin-top:2px;">{{$message}}</span>    
+                                                        @enderror
                                                     </div>
+
                                                     <div class="mb-3">
                                                         <label for="qualification" class="control-label">Station <span style="color: #e64b4b; margin-left: 5px;">*</span> </label>
-                                                        <select  class="col-md-12 form-control select2" name="station"  value="{{old('station')}}" @error('station') style="border-color:#e64b4b;" @enderror>
+                                                        <select style="width: 100%;" class="col-md-12 form-control select2" name="station"  value="{{old('station')}}" @error('station') style="border-color:#e64b4b;" @enderror>
                                                             <option value="">Select</option> 
                                                             <option value="lapai">LAPAI</option>
                                                             <option value="agaie"> AGAIE</option>
@@ -269,12 +288,12 @@
                                                             <span style="color:#e64b4b; font-size: 10px; margin-top:2px;">{{$message}}</span>    
                                                         @enderror
                                                     </div>
+
                                                 </div>
                                             </div>
         
                                             <div class="d-flex flex-wrap gap-2">
                                                 <button type="submit" class="btn btn-primary waves-effect waves-light">Save</button>
-                                                {{-- <button type="button" class="btn btn-secondary waves-effect waves-light">Cancel</button> --}}
                                             </div>
                                         </form>
         
