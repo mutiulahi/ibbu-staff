@@ -1,5 +1,6 @@
 @extends('layout/head')
 @section('title','Add Staff | IBBUL - Staff Admin Record')   
+
 {{-- @endsection --}}
     <body data-sidebar="dark">
 
@@ -26,12 +27,12 @@
                             <div class="col-12">
                                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
                                     <h4 class="mb-sm-0 font-size-18">Add Staff</h4>
-                                    <div class="page-title-right">
+                                    {{-- <div class="page-title-right">
                                         <ol class="breadcrumb m-0">
                                             <li class="breadcrumb-item"><a href="javascript: void(0);">Staff</a></li>
                                             <li class="breadcrumb-item active"> List</li>
                                         </ol>
-                                    </div>
+                                    </div> --}}
 
                                 </div>
                             </div>
@@ -42,8 +43,8 @@
                                 <div class="card">
                                     <div class="card-body">
         
-                                        <h4 class="card-title">Basic Information</h4>
-                                        <p class="card-title-desc">Fill all information below (The starred (<span style="color: #e64b4b;">*</span>) filed are in important) </p>
+                                        <h4 class="card-title">Staff Information</h4>
+                                        <p class="card-title-desc">Fill all information below (The starred (<span style="color: #e64b4b;">*</span>) filed are important) </p>
                                         @if (session('success'))
                                             <center>
                                                 <div class="col-sm-6" style="text-align: center">
@@ -98,7 +99,7 @@
                                                     
                                                     <div class="mb-3">
                                                         <label for="price">PFN <span style="color: #e64b4b; margin-left: 5px;">*</span> </label>
-                                                        <input id="price" name="pfn" type="number" placeholder="12323" class="form-control" value="{{old('pfn')}}" @error('pfn') style="border-color:#e64b4b;" @enderror>
+                                                        <input id="price" name="pfn" type="number" min="0" placeholder="12323" class="form-control" value="{{old('pfn')}}" @error('pfn') style="border-color:#e64b4b;" @enderror>
                                                         @error('pfn')
                                                             <span style="color:#e64b4b; font-size: 10px; margin-top:2px;">{{$message}}</span>    
                                                         @enderror
@@ -264,8 +265,8 @@
                                                     <div class="mb-3">
                                                         <label for="qualification" class="control-label">Grade / Step <span style="color: #e64b4b; margin-left: 5px;">*</span> </label>
                                                         <div class="input-daterange input-group" id="datepicker6" data-date-format="dd M, yyyy" data-date-autoclose="true" data-provide="datepicker" data-date-container='#datepicker6'>
-                                                            <input type="number" class="form-control" name="grade" placeholder="Grade" value="{{old('grade')}}" @error('grade') style="border-color:#e64b4b;" @enderror/>
-                                                            <input type="number" class="form-control" name="step" placeholder="Step" value="{{old('step')}}" @error('step') style="border-color:#e64b4b;" @enderror/>
+                                                            <input type="number" min="0" class="form-control" name="grade" placeholder="Grade" value="{{old('grade')}}" @error('grade') style="border-color:#e64b4b;" @enderror/>
+                                                            <input type="number" min="0" class="form-control" name="step" placeholder="Step" value="{{old('step')}}" @error('step') style="border-color:#e64b4b;" @enderror/>
                                                         </div>
                                                         @error('grade')
                                                             <span style="color:#e64b4b; font-size: 10px; margin-top:2px;">{{$message}}</span>,

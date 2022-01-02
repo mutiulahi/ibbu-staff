@@ -26,6 +26,11 @@ class Dashboard extends Controller
         return view('add_staff');
     }
 
+    public function calendar()
+    {
+        return view('calendar');
+    }
+
     // add staff action
     public function add_staff_action(Request $staff_details)
     {
@@ -91,6 +96,10 @@ class Dashboard extends Controller
         if (sizeof($select_me)>0) {
             $promotion_pages = DB::table('pages') 
                 ->update(['promotion_page' =>$status]);
+
+            // Page::where()
+            //     ->update(['promotion_page' =>$status]);
+
         }else {
             $save_status = new Page;
             $save_status->promotion_page = $status;
@@ -99,4 +108,40 @@ class Dashboard extends Controller
         return redirect()->back();
 
     }
+
+    // update staff status
+    public function staff_status(Request $status) 
+    {
+        $new_status = $status->status; 
+        $PFN = $status->pfn; 
+        Staff::where('PFN',$PFN)
+            ->update(['status' =>$new_status]);
+        return redirect()->back()->with('success','Staff Status Successfully Updated');
+    } 
+
+    //  update staff record
+    public function update_staff(Request $staff_details)
+    {
+        $id = $staff_details->id;
+        Staff::where('id',$id)
+            ->update([
+                'email' => $staff_details->email,
+                'name' => $staff_details->name,
+                'rank' => $staff_details->rank,
+                'department' => $staff_details->department,
+                'PFN' => $staff_details->pfn,
+                'sex' => $staff_details->sex,
+                'DOB' => $staff_details->date_of_birth,
+                'state' => $staff_details->state,
+                'LG' => $staff_details->local_government,
+                'qualification' => $staff_details->qualification,
+                'nature' => $staff_details->nature,
+                'date_first_appoint' => $staff_details->date_first_appoint,
+                'date_present_appoint' => $staff_details->date_present_appoint,
+                'grade_step' => 'Grade '.$staff_details->grade.'/Step '.$staff_details->step,
+                'station' => $staff_details->station,
+                // 'status' => "active",
+            ]);
+        return redirect()->back()->with('success','Staff Record Successfully Updated');;
+    } 
 }

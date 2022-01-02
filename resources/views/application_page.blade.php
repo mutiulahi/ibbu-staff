@@ -3,10 +3,7 @@
 <head>
         
         <meta charset="utf-8" />
-        <title>ICO Landing | Skote - Admin & Dashboard Template</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
-        <meta content="Themesbrand" name="author" />
+        <title>Promotion Application Form | IBBUL Staff Record</title> 
         <!-- App favicon -->
         <link rel="shortcut icon" href="assets/images/favicon.ico">
 
@@ -39,17 +36,13 @@
               
                 <div class="collapse navbar-collapse" id="topnav-menu-content">
                     <ul class="navbar-nav ms-auto" id="topnav-menu" >
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a class="nav-link active" href="#home">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#about">Check Your Promotion Status</a>
-                        </li>  
-                    </ul>
-
-                    <div class="my-2 ms-lg-2">
-                        <a href="javascript: void(0);" class="btn btn-outline-success w-xs">Sign in</a>
-                    </div>
+                        </li>   --}}
+                    </ul> 
                 </div>
             </div>
         </nav>
@@ -168,8 +161,8 @@
                             <img src="assets/images/logo-light.png" alt="" height="20">
                         </div>
     
-                        <p class="mb-2"><script>document.write(new Date().getFullYear())</script> © Skote. Design & Develop by Themesbrand</p>
-                        <p>It will be as simple as occidental in fact, it will be to an english person, it will seem like simplified English, as a skeptical</p>
+                        <p class="mb-2"><script>document.write(new Date().getFullYear())</script> © IBBUL Staff Record. </p>
+                        {{-- <p>It will be as simple as occidental in fact, it will be to an english person, it will seem like simplified English, as a skeptical</p> --}}
                     </div>
 
                 </div>

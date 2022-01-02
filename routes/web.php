@@ -25,6 +25,7 @@ Route::get('logout', [logout::class, 'logout'])->name('logout');
 // Dashboard
 
 Route::get('dashboard', [Dashboard::class, 'index'])->middleware('auth')->name('dashboard');
+Route::get('dashboard/calendar', [Dashboard::class, 'calendar'])->middleware('auth')->name('calendar');
 Route::post('dashboard/promotion', [Dashboard::class, 'promo_page'])->middleware('auth')->name('promo_page');
 
 // add staff
@@ -33,17 +34,24 @@ Route::post('dashboard/add_staff', [Dashboard::class, 'add_staff_action'])->midd
 
 // view staff
 Route::get('dashboard/view_staff',[Dashboard::class, 'view_staff_index'])->middleware('auth')->name('view_staff');
+// update staff
+Route::post('dashboard/view_staff',[Dashboard::class, 'update_staff'])->middleware('auth')->name('view_staff');
+
+// staff status
+Route::post('dashboard/staff_status',[Dashboard::class, 'staff_status'])->middleware('auth')->name('staff_status');
+
 
 
 //application
-Route::get('application',[Applications::class, 'application_index'])->middleware('auth')->name('application');
-Route::post('application',[Applications::class, 'application_action'])->middleware('auth');
+Route::get('application',[Applications::class, 'application_index'])->name('application');
+Route::post('application',[Applications::class, 'application_action']);
 Route::get('dashboard/applied_staff', [Applications::class, 'applied'])->middleware('auth')->name('applied');
 
 Route::get('dashboard/accepted_staff', [Applications::class, 'accept'])->middleware('auth')->name('accept');
 
 Route::post('dashboard/reject', [Applications::class, 'reject_app'])->middleware('auth')->name('reject_app');
 Route::post('dashboard/accept', [Applications::class, 'accept_app'])->middleware('auth')->name('accept_app');
+
 
 
 

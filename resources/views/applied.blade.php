@@ -26,12 +26,12 @@
                             <div class="col-12">
                                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
                                     <h4 class="mb-sm-0 font-size-18">View Staff Applications</h4>
-                                    <div class="page-title-right">
+                                    {{-- <div class="page-title-right">
                                         <ol class="breadcrumb m-0">
                                             <li class="breadcrumb-item"><a href="javascrip: void(0);">Staff</a></li>
                                             <li class="breadcrumb-item active"> Applications</li>
                                         </ol>
-                                    </div>
+                                    </div> --}}
 
                                 </div>
                             </div>
@@ -82,7 +82,13 @@
                                                             <button type="button" class="btn btn-success btn-sm waves-effect waves-light" data-bs-toggle="modal" data-bs-target=".bs-example-modal-sm{{$staff_application->PFN}}activate"><i class="fas fa-check-circle"></i></button>
                                                             <button type="button" class="btn btn-secondary btn-sm waves-effect waves-light" data-bs-toggle="modal" data-bs-target=".bs-example-modal-sm{{$staff_application->PFN}}details"><i class="fas fa-eye"></i></button>
                                                         </td>
-                                                        <td>{{$staff_application->app_status}}</td>
+                                                        <td> 
+                                                            @if ($staff_application->app_status == 'accept') 
+                                                            <span class="badge badge-pill badge-soft-success font-size-12">Accept</span> 
+                                                            @elseif($staff_application->app_status == 'reject') 
+                                                                <span class="badge badge-pill badge-soft-danger font-size-12">Reject</span>
+                                                            @endif
+                                                        </td>
                                                         <td>{{$staff_application->name}}</td>
                                                         <td>{{$staff_application->grade_step}}</td>
                                                         <td>{{$staff_application->PFN}}</td> 

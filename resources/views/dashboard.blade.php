@@ -8,7 +8,7 @@
         <meta content="Ibbul staff portal" name="description" />
         <meta content="Ibbu" name="author" /> --}}
         <!-- App favicon -->
-        <link rel="shortcut icon" href="assets/images/favicon.ico">
+        <link rel="shortcut icon" href="assets/images/favicon.png">
 
         <!-- Bootstrap Css -->
         <link href="assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
@@ -19,9 +19,7 @@
 
     </head>
 
-<body data-sidebar="dark">
-
-    <!-- <body data-layout="horizontal" data-topbar="dark"> -->
+<body data-sidebar="dark"> 
 
         <!-- Begin page -->
         <div id="layout-wrapper"> 

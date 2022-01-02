@@ -2,12 +2,8 @@
 <html lang="en"> 
  <head> 
         <title>@yield('title')</title> 
-        {{-- <title>Login | Skote - Admin & Dashboard Template</title> --}}
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
-        <meta content="Themesbrand" name="author" />
         <!-- App favicon -->
-        <link rel="shortcut icon" href="{{asset('assets/images/favicon.ico')}}">
+        <link rel="shortcut icon" href="{{asset('assets/images/favicon.png')}}">
 
         <link href="{{asset('assets/libs/select2/css/select2.min.css')}}" rel="stylesheet" type="text/css" />
         <!-- DataTables -->
@@ -30,10 +26,5 @@
     width: 100%;
 }
 </style>
-
-
-
-
-     
-
-    </head>
+ 
+</head>

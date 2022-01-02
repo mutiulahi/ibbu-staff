@@ -21,7 +21,7 @@ class Applications extends Controller
         $application_number = date('Ymd').rand(100,999); 
 
         $applicationDetails->validate([
-            'pfn'=>'required',
+            'pfn'=>'required|exists:applications,PFN',
         ]);
 
         $save_application = new Application();

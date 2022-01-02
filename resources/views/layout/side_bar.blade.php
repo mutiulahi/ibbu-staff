@@ -14,7 +14,7 @@
                     </a> 
                 </li> 
                 <li>
-                    <a href="calendar.html" class="waves-effect">
+                    <a href="{{route('calendar')}}" class="waves-effect">
                         <i class="bx bx-calendar"></i>
                         <span key="t-calendar">Calendar</span>
                     </a>

@@ -7,11 +7,11 @@
                 <div class="row justify-content-center">
                     <div class="col-md-8 col-lg-6 col-xl-5">
                         <div class="card overflow-hidden">
-                            <div class="bg-primary bg-soft">
+                            <div class="bg-primary">
                                 <div class="row">
                                     <div class="col-7">
-                                        <div class="text-primary p-4">
-                                            <h5 class="text-primary">Welcome Back !</h5>
+                                        <div class="text-white p-4">
+                                            <h5 class="text-white"><strong> Welcome Back ! </strong></h5>
                                             <p>Sign in to continue to IBBUL STAFF RECORD.</p>
                                         </div>
                                     </div>
@@ -25,7 +25,7 @@
                                     <a href="{{route('/')}}" class="auth-logo-light">
                                         <div class="avatar-md profile-user-wid mb-4">
                                             <span class="avatar-title rounded-circle bg-light">
-                                                <img src="assets/images/logo-light.svg" alt="" class="rounded-circle" height="34">
+                                                <img src="assets/images/logo-light.png" alt="" class="rounded-circle" height="34">
                                             </span>
                                         </div>
                                     </a>
@@ -33,7 +33,7 @@
                                     <a href="{{route('/')}}" class="auth-logo-dark">
                                         <div class="avatar-md profile-user-wid mb-4">
                                             <span class="avatar-title rounded-circle bg-light">
-                                                <img src="assets/images/logo.svg" alt="" class="rounded-circle" height="34">
+                                                <img src="assets/images/logo-dark.png" alt="" class="rounded-circle" height="34">
                                             </span>
                                         </div>
                                     </a>
@@ -69,7 +69,7 @@
                         <div class="mt-5 text-center">
                             
                             <div>
-                                <p>© <script>document.write(new Date().getFullYear())</script> IBBUL STAFF RECORD. Crafted with <i class="mdi mdi-heart text-danger"></i> by Tescodepro</p>
+                                <p>© <script>document.write(new Date().getFullYear())</script> IBBUL STAFF RECORD. by Tescodepro</p>
                             </div>
                         </div>
 
