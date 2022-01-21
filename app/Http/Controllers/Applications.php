@@ -21,23 +21,26 @@ class Applications extends Controller
         $application_number = date('Ymd').rand(100,999); 
 
         $applicationDetails->validate([
-            'pfn'=>'required|exists:applications,PFN',
+            'pfn'=>'required|exists:staff,PFN||unique:applications',
         ]);
 
         $save_application = new Application();
         $save_application->session = $session;
-        $save_application->status = 'pending';
+        $save_application->app_status = 'pending';
         $save_application->application_number = $application_number;
         $save_application->PFN=$applicationDetails->pfn;
         $save_application->save();
+
+        return back()->with('success', 'Your Application has been successfully submitted');
     } 
     public function applied() 
     {
-        $session = 2021;
+        // $session = date('Y');
+        // $session = 2021;
         // $get_applications = DB::table('applications')->where('session',$session)->get();
         $get_applications = DB::table('applications')
                 ->join('staff', 'applications.PFN', '=', 'staff.PFN')
-                ->where('applications.session',$session)
+                // ->where('applications.session',$session)
                 ->get();
 
         return view('applied', ['applications'=>$get_applications]);
@@ -45,7 +48,7 @@ class Applications extends Controller
 
     public function accept() 
     {
-        $session = 2021;
+        $session = date('Y');
         $get_applications = DB::table('applications')
                 ->join('staff', 'applications.PFN', '=', 'staff.PFN')
                 ->where('applications.session',$session)
@@ -67,15 +70,20 @@ class Applications extends Controller
 
     public function accept_app(Request $pfn_num)
     {
+        if ($pfn_num->category == "academic") {
+            $grade_step_input = 'CONUASS '.$pfn_num->grade.' / STEP '.$pfn_num->step;
+        } else {
+            $grade_step_input =  'CONTISS '.$pfn_num->grade.' / STEP '.$pfn_num->step;
+        }
+        $last_date = date('Y-m-d');
 
-        $grade_step_input = 'Grade'.$pfn_num->grade.'/Step'.$pfn_num->step;
        $approve_application = DB::table('applications')
                     ->where('PFN',$pfn_num->pfn)
                     ->update(['app_status' =>'accept']);
 
         $upgrade_application = DB::table('staff')
                     ->where('PFN',$pfn_num->pfn)
-                    ->update(['grade_step' =>$grade_step_input]);
+                    ->update(['grade_step' =>$grade_step_input, 'rank' =>$pfn_num->rank, 'date_present_appoint'=>$last_date]);
 
 
         return redirect()->route('applied')->with('success','Staff promotion successfully accepted');

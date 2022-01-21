@@ -32,10 +32,19 @@ Route::post('dashboard/promotion', [Dashboard::class, 'promo_page'])->middleware
 Route::get('dashboard/add_staff', [Dashboard::class, 'add_staff_index'])->middleware('auth')->name('add_staff');
 Route::post('dashboard/add_staff', [Dashboard::class, 'add_staff_action'])->middleware('auth');
 
-// view staff
-Route::get('dashboard/view_staff',[Dashboard::class, 'view_staff_index'])->middleware('auth')->name('view_staff');
+//view active academic staff
+Route::get('dashboard/academic_staff',[Dashboard::class, 'view_active_academic_staff_index'])->middleware('auth')->name('view_active_academic_staff');
+
+//view non active academic staff    un_active_staff
+Route::get('dashboard/non_academic_staff',[Dashboard::class, 'view_active_non_academic_staff_index'])->middleware('auth')->name('view_non_active_academic_staff');
+
+
+//view un_active staff 
+Route::get('dashboard/non_active_staff',[Dashboard::class, 'un_active_staff_index'])->middleware('auth')->name('un_active_staff');
+
+
 // update staff
-Route::post('dashboard/view_staff',[Dashboard::class, 'update_staff'])->middleware('auth')->name('view_staff');
+Route::post('dashboard/update_staff',[Dashboard::class, 'update_staff'])->middleware('auth')->name('update_staff_record');
 
 // staff status
 Route::post('dashboard/staff_status',[Dashboard::class, 'staff_status'])->middleware('auth')->name('staff_status');

@@ -1,33 +1,13 @@
-<!doctype html>
-<html lang="en">
-<head>
-        
-        <meta charset="utf-8" />
-        <title>Promotion Application Form | IBBUL Staff Record</title> 
-        <!-- App favicon -->
-        <link rel="shortcut icon" href="assets/images/favicon.ico">
-
-        <!-- owl.carousel css -->
-        <link rel="stylesheet" href="assets/libs/owl.carousel/assets/owl.carousel.min.css">
-
-        <link rel="stylesheet" href="assets/libs/owl.carousel/assets/owl.theme.default.min.css">
-
-        <!-- Bootstrap Css -->
-        <link href="assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
-        <!-- Icons Css -->
-        <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
-        <!-- App Css-->
-        <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
-
-    </head>
+@extends('layout/head')
+@section('title','Promotion Application | IBBUL - Staff Admin Record')   
 
     <body data-bs-spy="scroll" data-bs-target="#topnav-menu" data-bs-offset="60">
 
         <nav class="navbar navbar-expand-lg navigation fixed-top sticky">
             <div class="container">
-                <a class="navbar-logo" href="index.html">
-                    <img src="assets/images/logo-dark.png" alt="" height="19" class="logo logo-dark">
-                    <img src="assets/images/logo-light.png" alt="" height="19" class="logo logo-light">
+                <a class="navbar-logo mt-2" href="index.html">
+                    <img src="assets/images/logo-dark.png" alt="" height="39" class="logo logo-dark">
+                    <img src="assets/images/logo-light.png" alt="" height="39" class="logo logo-light">
                 </a>
 
                 <button type="button" class="btn btn-sm px-3 font-size-16 d-lg-none header-item waves-effect waves-light" data-bs-toggle="collapse" data-bs-target="#topnav-menu-content">
@@ -59,14 +39,27 @@
                             </div>
                             <div class="card-body">
                                 <div class="text-center"> 
-                                    <h5>Time left to Apply :</h5>
+                                    {{-- <h5>Time left to Apply :</h5>
                                     <div class="mt-4">
                                         <div data-countdown="2022/1/30" class="counter-number ico-countdown"></div>
-                                    </div>
+                                    </div> --}}
+
+                                    @if (session('success'))
+                                        <center>
+                                            <div class="col-sm-6" style="text-align: center">
+                                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                                    <i class="mdi mdi-check-all me-2"></i>
+                                                        {{session('success')}}
+                                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                                </div>
+                                            </div>
+                                        </center>
+                                    @endif
 
                                    <form action="{{route('application')}}" method="post">
                                         @csrf
                                         <h3 class="mt-5">Enter your PFN to apply for promotion :</h3>
+
 
                                         <div class="mt-4">
                                             <center>

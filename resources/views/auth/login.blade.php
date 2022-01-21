@@ -18,6 +18,7 @@
                                     <div class="col-5 align-self-end">
                                         <img src="assets/images/profile-img.png" alt="" class="img-fluid">
                                     </div>
+                                 
                                 </div>
                             </div>
                             <div class="card-body pt-0"> 
@@ -38,12 +39,26 @@
                                         </div>
                                     </a>
                                 </div>
+                                @if (session('error'))
+                                    <center>
+                                        <div class="col-sm-12" style="text-align: center">
+                                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                                <i class="mdi mdi-check-all me-2"></i>
+                                                    {{session('error')}}
+                                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                            </div>
+                                        </div>
+                                    </center>
+                                @endif
                                 <div class="p-2">
                                     <form class="form-horizontal" action="{{route('/')}}" method="POST">
                                         @csrf
                                         <div class="mb-3">
                                             <label for="Email" class="form-label">Email</label>
                                             <input type="email" class="form-control" id="Email" name="email" placeholder="Enter Email">
+                                            @error('email')
+                                                <span style="color:#e64b4b; font-size: 10px; margin-top:2px;">{{$message}}</span>    
+                                            @enderror
                                         </div>
                 
                                         <div class="mb-3">
@@ -52,6 +67,9 @@
                                                 <input type="password" class="form-control" name="password" placeholder="Enter password" aria-label="Password" aria-describedby="password-addon">
                                                 <button class="btn btn-light " type="button"  id="password-addon"><i class="mdi mdi-eye-outline"></i></button>
                                             </div>
+                                            @error('password')
+                                                <span style="color:#e64b4b; font-size: 10px; margin-top:2px;">{{$message}}</span>    
+                                            @enderror
                                         </div> 
                                         
                                         <div class="mt-3 d-grid">

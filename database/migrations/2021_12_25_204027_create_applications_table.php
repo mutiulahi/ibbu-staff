@@ -15,9 +15,11 @@ class CreateApplicationsTable extends Migration
     {
         Schema::create('applications', function (Blueprint $table) {
             $table->id();
-            $table->string('PFN'); 
-            $table->string('session');
-            $table->string('application_number');
+            $table->string('PFN')->nullable(); 
+            $table->string('app_status')->nullable();
+            $table->string('session')->nullable();
+            $table->string('application_number')->nullable();
+
             $table->timestamps();
         });
     }

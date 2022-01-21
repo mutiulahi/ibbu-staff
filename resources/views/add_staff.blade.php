@@ -44,7 +44,7 @@
                                     <div class="card-body">
         
                                         <h4 class="card-title">Staff Information</h4>
-                                        <p class="card-title-desc">Fill all information below (The starred (<span style="color: #e64b4b;">*</span>) filed are important) </p>
+                                        <p class="card-title-desc">Fill all information below <code>(The starred (<span style="color: #e64b4b;">*</span>) field are important) </code> </p>
                                         @if (session('success'))
                                             <center>
                                                 <div class="col-sm-6" style="text-align: center">
@@ -62,14 +62,28 @@
                                             @csrf
                                             <div class="row">
 
-                                                <div class="col-sm-12">
+                                                <div class="col-sm-6">
                                                     <div class="mb-3">
-                                                        <label for="date-apoint">Email<span style="color: #e64b4b; margin-left: 5px;">*</span> </label>
+                                                        <label for="date-apoint">Email </label>
                                                         <input id="date-apoint" name="email" type="email" placeholder="Email (tescode@mail.com)" class="form-control" value="{{old('email')}}" @error('email') style="border-color:#e64b4b;" @enderror>
                                                         @error('email')
                                                             <span style="color:#e64b4b; font-size: 10px; margin-top:2px;">{{$message}}</span>    
                                                         @enderror
                                                     </div>
+                                                </div>
+
+                                                <div class="col-sm-6">
+                                                    <div class="mb-3">
+                                                        <label class="control-label">Staff Category <span style="color: #e64b4b; margin-left: 5px;">*</span> </label>
+                                                        <select style="width: 100%;" class="col-md-12 form-control select2" name="category" value="{{old('category')}}" @error('category')  style="border-color:#e64b4b;" @enderror >
+                                                            <option value="" >Select Staff Category </option>
+                                                            <option value="academic">Academic</option>
+                                                            <option value="non academic">Non Academic</option>
+                                                        </select>
+                                                        @error('category')
+                                                            <span style="color:#e64b4b; font-size: 10px; margin-top:2px;">{{$message}}</span>    
+                                                        @enderror
+                                                    </div> 
                                                 </div>
 
                                                 <div class="col-sm-6">
@@ -90,9 +104,9 @@
                                                     </div>
 
                                                     <div class="mb-3">
-                                                        <label for="manufacturerbrand">Department <span style="color: #e64b4b; margin-left: 5px;">*</span> </label>
-                                                        <input id="manufacturerbrand" name="department" placeholder=" Department (e.g VC's office)" type="text" class="form-control" value="{{old('department')}}" @error('department') style="border-color:#e64b4b;" @enderror>
-                                                        @error('department')
+                                                        <label for="manufacturerbrand">Department / Unit <span style="color: #e64b4b; margin-left: 5px;">*</span> </label>
+                                                        <input id="manufacturerbrand" name="department_or_unit" placeholder=" Department or Unit (e.g VC's office)" type="text" class="form-control" value="{{old('department_or_unit')}}" @error('department_or_unit') style="border-color:#e64b4b;" @enderror>
+                                                        @error('department_or_unit')
                                                             <span style="color:#e64b4b; font-size: 10px; margin-top:2px;">{{$message}}</span>    
                                                         @enderror
                                                     </div>
@@ -109,7 +123,7 @@
                                                 <div class="col-sm-6">
                                                     <div class="mb-3">
                                                         <label class="control-label">Sex <span style="color: #e64b4b; margin-left: 5px;">*</span> </label>
-                                                        <select style="width: 100%;" class="col-md-12 form-control select2" name="sex" value="{{old('sex')}}" @error('sex')  style="border-color:#e64b4b;" @enderror>
+                                                        <select style="width: 100%;" class="col-md-12 form-control select2" name="sex" value="{{old('sex')}}" @error('sex')  style="border-color:#e64b4b;" @enderror >
                                                             <option value="" >Select</option>
                                                             <option value="male">Male</option>
                                                             <option value="female">Female</option>
@@ -133,13 +147,7 @@
                                                         @error('state')
                                                             <span style="color:#e64b4b; font-size: 10px; margin-top:2px;">{{$message}}</span>    
                                                         @enderror
-                                                        {{-- <select style="width: 100%;" class="col-md-12 form-control select2" name="state" value="{{old('state')}}" @error('state')  style="border-color:#e64b4b;" @enderror>
-                                                            <option value="">Select</option> 
-                                                            <option value="osun">osun</option>
-                                                        </select>
-                                                        @error('state')
-                                                            <span style="color:#e64b4b; font-size: 10px; margin-top:2px;">{{$message}}</span>    
-                                                        @enderror --}}
+                                                         
                                                     </div>
                                                     
                                                     <div class="mb-3">
@@ -148,13 +156,7 @@
                                                         @error('local_government')
                                                             <span style="color:#e64b4b; font-size: 10px; margin-top:2px;">{{$message}}</span>    
                                                         @enderror
-                                                        {{-- <select style="width: 100%;" class="col-md-12 form-control select2" name="local_government" value="{{old('local_government')}}" @error('local_government')  style="border-color:#e64b4b;" @enderror>
-                                                            <option value="">Select</option> 
-                                                            <option value="iwo">Iwo</option>
-                                                        </select>
-                                                        @error('local_government')
-                                                            <span style="color:#e64b4b; font-size: 10px; margin-top:2px;">{{$message}}</span>    
-                                                        @enderror --}}
+                                                        
                                                     </div>
 
                                                 </div>
@@ -164,68 +166,7 @@
                                                 <div class="col-sm-6">
                                                     <div class="mb-3">
                                                         <label class="form-label">Qualification <span style="color: #e64b4b; margin-left: 5px;">*</span></label>
-                                                        <select style="width: 100%; @error('qualification') border-color:#e64b4b; @enderror" class="col-md-12 select2 form-control select2-multiple" name="qualification[]" multiple="multiple" data-placeholder="Choose ..." value="{{old('qualification')}}" @error('qualification') style="border-color:#e64b4b;" @enderror>
-                                                            <optgroup label="Alaskan/Hawaiian Time Zone">
-                                                                <option value="AK">Alaska</option>
-                                                                <option value="HI">Hawaii</option>
-                                                            </optgroup>
-                                                            <optgroup label="Pacific Time Zone">
-                                                                <option value="CA">California</option>
-                                                                <option value="NV">Nevada</option>
-                                                                <option value="OR">Oregon</option>
-                                                                <option value="WA">Washington</option>
-                                                            </optgroup>
-                                                            <optgroup label="Mountain Time Zone">
-                                                                <option value="AZ">Arizona</option>
-                                                                <option value="CO">Colorado</option>
-                                                                <option value="ID">Idaho</option>
-                                                                <option value="MT">Montana</option>
-                                                                <option value="NE">Nebraska</option>
-                                                                <option value="NM">New Mexico</option>
-                                                                <option value="ND">North Dakota</option>
-                                                                <option value="UT">Utah</option>
-                                                                <option value="WY">Wyoming</option>
-                                                            </optgroup>
-                                                            <optgroup label="Central Time Zone">
-                                                                <option value="AL">Alabama</option>
-                                                                <option value="AR">Arkansas</option>
-                                                                <option value="IL">Illinois</option>
-                                                                <option value="IA">Iowa</option>
-                                                                <option value="KS">Kansas</option>
-                                                                <option value="KY">Kentucky</option>
-                                                                <option value="LA">Louisiana</option>
-                                                                <option value="MN">Minnesota</option>
-                                                                <option value="MS">Mississippi</option>
-                                                                <option value="MO">Missouri</option>
-                                                                <option value="OK">Oklahoma</option>
-                                                                <option value="SD">South Dakota</option>
-                                                                <option value="TX">Texas</option>
-                                                                <option value="TN">Tennessee</option>
-                                                                <option value="WI">Wisconsin</option>
-                                                            </optgroup>
-                                                            <optgroup label="Eastern Time Zone">
-                                                                <option value="CT">Connecticut</option>
-                                                                <option value="DE">Delaware</option>
-                                                                <option value="FL">Florida</option>
-                                                                <option value="GA">Georgia</option>
-                                                                <option value="IN">Indiana</option>
-                                                                <option value="ME">Maine</option>
-                                                                <option value="MD">Maryland</option>
-                                                                <option value="MA">Massachusetts</option>
-                                                                <option value="MI">Michigan</option>
-                                                                <option value="NH">New Hampshire</option>
-                                                                <option value="NJ">New Jersey</option>
-                                                                <option value="NY">New York</option>
-                                                                <option value="NC">North Carolina</option>
-                                                                <option value="OH">Ohio</option>
-                                                                <option value="PA">Pennsylvania</option>
-                                                                <option value="RI">Rhode Island</option>
-                                                                <option value="SC">South Carolina</option>
-                                                                <option value="VT">Vermont</option>
-                                                                <option value="VA">Virginia</option>
-                                                                <option value="WV">West Virginia</option>
-                                                            </optgroup>
-                                                        </select> 
+                                                        <input id="price" name="qualification" type="text" class="form-control" placeholder="Local Government Area" value="{{old('qualification')}}"  @error('qualification') style="border-color:#e64b4b;" @enderror>
                                                         @error('qualification')
                                                             <span style="color:#e64b4b; font-size: 10px; margin-top:2px;">{{$message}}</span>    
                                                         @enderror
@@ -263,13 +204,16 @@
                                                     </div>
 
                                                     <div class="mb-3">
-                                                        <label for="qualification" class="control-label">Grade / Step <span style="color: #e64b4b; margin-left: 5px;">*</span> </label>
+
+                                                        {{-- <label for="qualification" class="control-label">CONUASS / Step <span style="color: #e64b4b; margin-left: 5px;">*</span> </label> --}}
+                                                        <label for="qualification" class="control-label"> Grade <code>(CONUASS or CONTISS)</code> / Step <span style="color: #e64b4b; margin-left: 5px;">*</span> </label>
+
                                                         <div class="input-daterange input-group" id="datepicker6" data-date-format="dd M, yyyy" data-date-autoclose="true" data-provide="datepicker" data-date-container='#datepicker6'>
-                                                            <input type="number" min="0" class="form-control" name="grade" placeholder="Grade" value="{{old('grade')}}" @error('grade') style="border-color:#e64b4b;" @enderror/>
+                                                            <input type="number" min="0" class="form-control" name="conuass_or_contiss" placeholder="conuass_or_contiss" value="{{old('conuass_or_contiss')}}" @error('conuass_or_contiss') style="border-color:#e64b4b;" @enderror/>
                                                             <input type="number" min="0" class="form-control" name="step" placeholder="Step" value="{{old('step')}}" @error('step') style="border-color:#e64b4b;" @enderror/>
                                                         </div>
-                                                        @error('grade')
-                                                            <span style="color:#e64b4b; font-size: 10px; margin-top:2px;">{{$message}}</span>,
+                                                        @error('conuass_or_contiss')
+                                                            <span style="color:#e64b4b; font-size: 10px; margin-top:2px;">{{$message}}</span> <code>,</code>
                                                         @enderror
                                                         @error('step')
                                                             <span style="color:#e64b4b; font-size: 10px; margin-top:2px;">{{$message}}</span>    
@@ -284,12 +228,21 @@
                                                             <option value="agaie"> AGAIE</option>
                                                             <option value="new bussa">NEW BUSSA</option>
                                                             <option value="ibeto">IBETO</option>
+                                                            <option value="minna">MINNA</option>
                                                         </select>
                                                         @error('station')
                                                             <span style="color:#e64b4b; font-size: 10px; margin-top:2px;">{{$message}}</span>    
                                                         @enderror
+                                                    </div> 
+                                                </div>
+                                                <div class="col-sm-12">
+                                                    <div class="mb-3">
+                                                        <label for="date-apoint">Date of Confirmation Appointment <span style="color: #e64b4b; margin-left: 5px;">*</span> </label>
+                                                        <input id="date-apoint" name="date_confirm_appoint" type="date" class="form-control" value="{{old('date_confirm_appoint')}}" @error('date_confirm_appoint') style="border-color:#e64b4b;" @enderror>
                                                     </div>
-
+                                                    @error('date_confirm_appoint')
+                                                        <span style="color:#e64b4b; font-size: 10px; margin-top:2px;">{{$message}}</span>    
+                                                    @enderror
                                                 </div>
                                             </div>
         

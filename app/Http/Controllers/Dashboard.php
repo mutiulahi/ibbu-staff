@@ -35,10 +35,10 @@ class Dashboard extends Controller
     public function add_staff_action(Request $staff_details)
     {
         $staff_details->validate([
-            'email' => 'required|unique:staff|email',
+            // 'email' => 'required|unique:staff|email',
             'name' => 'required',
             'rank' => 'required',
-            'department' => 'required',
+            'department_or_unit' => 'required',
             'pfn' => 'required|unique:staff',
             'sex' => 'required',
             'date_of_birth' => 'required',
@@ -47,45 +47,81 @@ class Dashboard extends Controller
             'qualification' => 'required',
             'nature' => 'required',
             'date_first_appoint' => 'required',
+            // 'date_last_appoint' => 'required', 
+            'date_confirm_appoint' => 'required',
             'date_present_appoint' => 'required',
-            'grade' => 'required',
+            'conuass_or_contiss' => 'required',
             'step' => 'required',
             'station' => 'required',
-        ]);
-        $qualifications = '';
-        foreach ($staff_details->qualification as $value) {
-            $qualifications .= $value . ',';
+            'category' => 'required',
+        ]); 
+
+        if ($staff_details->category == 'academic') {
+            $grade_steo_input = 'CONUASS '.$staff_details->conuass_or_contiss.' / STEP '.$staff_details->step;
+        } else {
+            $grade_steo_input = 'CONTISS '.$staff_details->conuass_or_contiss.' / STEP '.$staff_details->step;
         }
+        
+        
 
 
         $save_staff_details = new Staff;
         $save_staff_details->email = $staff_details->email;
         $save_staff_details->name = $staff_details->name;
         $save_staff_details->rank = $staff_details->rank;
-        $save_staff_details->department = $staff_details->department;
+        $save_staff_details->department = $staff_details->department_or_unit;
         $save_staff_details->PFN = $staff_details->pfn;
         $save_staff_details->sex = $staff_details->sex;
         $save_staff_details->DOB = $staff_details->date_of_birth;
         $save_staff_details->state = $staff_details->state;
         $save_staff_details->LG = $staff_details->local_government;
-        $save_staff_details->qualification = $qualifications;
+        $save_staff_details->qualification = $staff_details->qualification;
         $save_staff_details->nature = $staff_details->nature;
         $save_staff_details->date_first_appoint = $staff_details->date_first_appoint;
         $save_staff_details->date_present_appoint = $staff_details->date_present_appoint;
-        $save_staff_details->grade_step = 'Grade'.$staff_details->grade.'/Step'.$staff_details->step;
+        $save_staff_details->date_confirm_appoint = $staff_details->date_confirm_appoint;
+        $save_staff_details->grade_step = $grade_steo_input;
         $save_staff_details->station = $staff_details->station;
-        $save_staff_details->status = "active";
+        $save_staff_details->category = $staff_details->category; 
+        $save_staff_details->status = "1";
         $save_staff_details->save();
 
-        return back()->with('success', 'Staff Successful Added.');
+        return redirect()->back()->with('success', 'Staff Successful Added.');
     }
 
-    // view staff index 
-    public function view_staff_index()
+    // view active academic staff index 
+    public function view_active_academic_staff_index()
     {
-        $fetch_staff = DB::table('staff')->get();
+        $fetch_staff = DB::table('staff')
+                        ->where('status','1')
+                        ->where('category', 'academic')
+                        ->get();
 
-        return view('view_staff', ['fetch_staff' => $fetch_staff]);
+        return view('view_active_aca_staff', ['fetch_staff' => $fetch_staff]);
+    }
+
+    // view active non academic staff index 
+    public function view_active_non_academic_staff_index()
+    {
+        $fetch_staff = DB::table('staff')
+                        ->where('status','1')
+                        ->where('category', 'non academic')
+                        ->get();
+
+        return view('view_active_non_aca_staff', ['fetch_staff' => $fetch_staff]);
+    }
+
+
+    // view non active staff index
+    public function un_active_staff_index()
+    {
+        $fetch_staff = DB::table('staff')
+                        ->where('status','2')
+                        ->orWhere('status','3')
+                        ->orWhere('status','4') 
+                        ->get();
+
+        return view('view_un_active_staff', ['fetch_staff' => $fetch_staff]);
     }
 
     //activate and deactivate promotion page
@@ -123,6 +159,13 @@ class Dashboard extends Controller
     public function update_staff(Request $staff_details)
     {
         $id = $staff_details->id;
+ 
+        if ($staff_details->category == 'academic') {
+            $grade_steo_input = 'CONUASS '.$staff_details->conuass_or_contiss.' / STEP '.$staff_details->step;
+        } else {
+            $grade_steo_input = 'CONTISS '.$staff_details->conuass_or_contiss.' / STEP '.$staff_details->step;
+        }
+
         Staff::where('id',$id)
             ->update([
                 'email' => $staff_details->email,
@@ -137,11 +180,12 @@ class Dashboard extends Controller
                 'qualification' => $staff_details->qualification,
                 'nature' => $staff_details->nature,
                 'date_first_appoint' => $staff_details->date_first_appoint,
+                'date_confirm_appoint' => $staff_details->date_confirm_appoint,
                 'date_present_appoint' => $staff_details->date_present_appoint,
-                'grade_step' => 'Grade '.$staff_details->grade.'/Step '.$staff_details->step,
+                'grade_step' => $grade_steo_input,
                 'station' => $staff_details->station,
-                // 'status' => "active",
+                'category' => $staff_details->category, 
             ]);
-        return redirect()->back()->with('success','Staff Record Successfully Updated');;
+        return back()->with('success','Staff Record Successfully Updated');
     } 
 }

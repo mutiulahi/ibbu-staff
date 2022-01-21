@@ -13,12 +13,12 @@
                         <span key="t-dashboards">Dashboards</span>
                     </a> 
                 </li> 
-                <li>
+                {{-- <li>
                     <a href="{{route('calendar')}}" class="waves-effect">
                         <i class="bx bx-calendar"></i>
                         <span key="t-calendar">Calendar</span>
                     </a>
-                </li>
+                </li> --}}
 
                 <li class="menu-title" key="t-apps">Staff </li>
 
@@ -28,7 +28,9 @@
                         <span key="t-contacts">Staff</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false"> 
-                        <li><a href="{{route('view_staff')}}" key="t-user-list">Staff List</a></li>
+                        <li><a href="{{route('view_active_academic_staff')}}" key="t-user-list">Academic Staff List</a></li>
+                        <li><a href="{{route('view_non_active_academic_staff')}}" key="t-user-list">Non Academic Staff List</a></li>
+                        <li><a href="{{route('un_active_staff')}}" key="t-user-list">Un-active Staff List</a></li>
                         <li><a href="{{route('add_staff')}}" key="t-profile">Add Staff</a></li>
                     </ul>
                 </li> 

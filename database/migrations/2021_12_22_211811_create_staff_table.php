@@ -15,21 +15,26 @@ class CreateStaffTable extends Migration
     {
         Schema::create('staff', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('rank');
-            $table->string('department');
-            $table->string('PFN');
-            $table->string('sex');
-            $table->string('DOB');
-            $table->string('state');
-            $table->string('LG');
-            $table->string('qualification');
-            $table->string('nature');
-            $table->string('date_first_appoint');
-            $table->string('date_present_appoint');
-            $table->string('grade_step');
-            $table->string('station');
-            $table->string('status');
+            $table->string('staff_status')->nullable();
+            $table->string('name')->nullable();
+            $table->string('email')->nullable();
+            $table->string('rank')->nullable();
+            $table->string('department')->nullable();
+            $table->string('PFN')->nullable();
+            $table->string('sex')->nullable();
+            $table->string('DOB')->nullable();
+            $table->string('state')->nullable();
+            $table->string('LG')->nullable();
+            $table->string('qualification')->nullable();
+            $table->string('nature')->nullable();
+            $table->string('date_first_appoint')->nullable();
+            $table->string('date_confirm_appoint')->nullable();
+            $table->string('date_present_appoint')->nullable();
+            $table->string('date_last_promotion')->nullable();
+            $table->string('grade_step')->nullable();
+            $table->string('category')->nullable();
+            $table->string('station')->nullable();
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }

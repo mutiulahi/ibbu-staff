@@ -62,9 +62,14 @@
                                                 <th>NO</th>
                                                 <th>Action</th>
                                                 <th>App. Status</th>
+                                                <th>PFN / TPN</th>
                                                 <th>Name</th> 
-                                                <th>Grade/Step</th>
-                                                <th>PFN</th>
+                                                <th>Qualification</th>
+                                                <th>Date of First Appt.</th>
+                                                <th>Date of Confrimation of Appt.</th>
+                                                <th>Date of Last Promotion</th> 
+                                                <th>Present Rank</th>
+                                                <th>(CONTISS / CONUASS) / STEP</th>
                                                 <th>Year of App.</th>
                                                 <th>Application Number</th>
                                                 <th>Application Date</th> 
@@ -87,11 +92,18 @@
                                                             <span class="badge badge-pill badge-soft-success font-size-12">Accept</span> 
                                                             @elseif($staff_application->app_status == 'reject') 
                                                                 <span class="badge badge-pill badge-soft-danger font-size-12">Reject</span>
+                                                            @elseif($staff_application->app_status == 'pending') 
+                                                                <span class="badge badge-pill badge-soft-warning font-size-12">Pending</span>
                                                             @endif
                                                         </td>
-                                                        <td>{{$staff_application->name}}</td>
-                                                        <td>{{$staff_application->grade_step}}</td>
                                                         <td>{{$staff_application->PFN}}</td> 
+                                                        <td>{{$staff_application->name}}</td>
+                                                        <td>{{$staff_application->qualification}}</td>
+                                                        <td>{{$staff_application->date_first_appoint}}</td>
+                                                        <td>{{$staff_application->date_confirm_appoint}}</td>
+                                                        <td>{{$staff_application->date_present_appoint}}</td>
+                                                        <td>{{$staff_application->rank}}</td>
+                                                        <td>{{$staff_application->grade_step}}</td>
                                                         <td>{{$staff_application->session}}</td> 
                                                         <td>{{$staff_application->application_number}}</td> 
                                                         <td>{{$staff_application->created_at}}</td>
@@ -140,15 +152,23 @@
                                                                             <form action="{{route('accept_app')}}" method="post">
                                                                                 @csrf
                                                                                 <input type="hidden" name="pfn" value="{{$staff_application->PFN}}">
+                                                                                <input type="hidden" name="category" value="{{$staff_application->category}}">
                                                                                 <div class="mb-3">
                                                                                     <label class="form-label">Change the <b> Grade/Step </b></label>
                                                                                     <div class="input-group auth-pass-inputgroup">
-                                                                                        <input type="number" class="form-control" name="grade" placeholder="Grade" required>
+                                                                                        <input type="number" class="form-control" name="grade" placeholder="CONUASS / CONTISS" required>
                                                                                     </div>
                                                                                     <br>
                                                                                     <div class="input-group auth-pass-inputgroup">
                                                                                         <input type="number" class="form-control" name="step" placeholder="Step" required>
                                                                                     </div>
+                                                                                </div> 
+                                                                                <div class="mb-3">
+                                                                                    <label class="form-label">Change the <b> Rank </b></label>
+                                                                                    <div class="input-group auth-pass-inputgroup">
+                                                                                        <input type="text" class="form-control" name="rank" placeholder="Next Rank" required>
+                                                                                    </div>
+                                                                                     
                                                                                 </div> 
                                                                                 <button class="btn btn-sm btn-warning mt-3 mb-4">Confirm</button>
                                                                             </form>

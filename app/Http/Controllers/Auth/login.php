@@ -33,7 +33,7 @@ class login extends Controller
 
             return redirect()->intended('dashboard');
         }else{
-            return back()->with(['error','The provided credentials do not match our records.']);
+            return back()->with('error', 'The provided credentials do not match our records.');
         }
 
         // return back()->withErrors([
@@ -42,10 +42,10 @@ class login extends Controller
         // ]);
 
         // $save = new User;
-        // $save->name = 'Detty';
+        // $save->name = 'Detty Establishment';
         // $save->email = $email;
         // $save->password = Hash::make($password);
         // $save->save();
-
+        // return back()->with('error', 'The provided credentials do not match our records.');
     }
 }

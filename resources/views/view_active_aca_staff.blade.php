@@ -25,7 +25,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                    <h4 class="mb-sm-0 font-size-18">View Staff</h4>
+                                    <h4 class="mb-sm-0 font-size-18">Active Academic Staff List</h4>
                                     <div class="page-title-right">
                                         {{-- <ol class="breadcrumb m-0">
                                             <li class="breadcrumb-ite">Staff</a></li>
@@ -53,7 +53,7 @@
                                 <div class="card">
                                     <div class="card-body">
                                         
-                                        <h4 class="card-title">Staff Detail</h4>
+                                        <h4 class="card-title">Active Academic Staff Detail</h4>
                                         <p class="card-title-desc">
                                         </p>
         
@@ -64,17 +64,18 @@
                                                 <th>Action</th>
                                                 <th>Status</th>
                                                 <th>Name</th>
-                                                <th>Grade/Step</th>
-                                                <th>Sex</th>
-                                                <th>PFN</th>
-                                                <th>Rank</th>
                                                 <th>Qualification</th> 
+                                                <th>Grade/Step</th>
+                                                <th>PFN</th>
+                                                <th>Sex</th> 
+                                                <th>Rank</th> 
                                                 <th>Email</th>
                                                 <td>Date of Birth</td>
                                                 <td>State</td>
                                                 <td>Local Government</td>
                                                 <td>Nature of Appointment</td>
                                                 <td>Date of First Appointment</td>
+                                                <td>Date of Confirmation of Appointment</td>
                                                 <td>Date of Present Appointment</td>
                                                 <td>Station</td>
                                             </tr>
@@ -104,17 +105,18 @@
                                                             {{-- {{$staff_details->status}} --}}
                                                         </td>
                                                         <td>{{$staff_details->name}}</td>
-                                                        <td>{{$staff_details->grade_step}}</td>
-                                                        <td>{{$staff_details->sex}}</td>
-                                                        <td>{{$staff_details->PFN}}</td>
-                                                        <td>{{$staff_details->rank}}</td>
                                                         <td>{{$staff_details->qualification}}</td>
+                                                        <td>{{$staff_details->grade_step}}</td>
+                                                        <td>{{$staff_details->PFN}}</td>
+                                                        <td>{{$staff_details->sex}}</td>
+                                                        <td>{{$staff_details->rank}}</td> 
                                                         <td>{{$staff_details->email}}</td>
                                                         <td>{{$staff_details->DOB}}</td>
                                                         <td>{{$staff_details->state}}</td>
                                                         <td>{{$staff_details->LG}}</td>
                                                         <td>{{$staff_details->nature}}</td>
                                                         <td>{{$staff_details->date_first_appoint}}</td>
+                                                        <td>{{$staff_details->date_confirm_appoint}}</td>
                                                         <td>{{$staff_details->date_present_appoint}}</td>
                                                         <td>{{$staff_details->station}}</td> 
                                                         
@@ -221,11 +223,12 @@
                                                                                 <h4 class="card-title">Staff Information</h4>
                                                                                 <p class="card-title-desc">Fill all information below (The starred (<span style="color: #e64b4b;">*</span>) filed are important) </p>
                                                 
-                                                                                <form accept="{{route('view_staff')}}" method="POST">
+                                                                                <form accept="{{route('update_staff_record')}}" method="POST">
+
                                                                                     @csrf
                                                                                     <input type="hidden" name="id" value="{{$staff_details->id}}">
                                                                                     <div class="row"> 
-                                                                                        <div class="col-sm-12">
+                                                                                        <div class="col-sm-6">
                                                                                             <div class="mb-3">
                                                                                                 <label for="date-apoint">Email<span style="color: #e64b4b; margin-left: 5px;">*</span> </label>
                                                                                                 <input id="date-apoint" name="email" type="email" placeholder="Email (tescode@mail.com)" class="form-control" value="{{$staff_details->email}}" @error('email') style="border-color:#e64b4b;" @enderror required>
@@ -233,6 +236,19 @@
                                                                                                     <span style="color:#e64b4b; font-size: 10px; margin-top:2px;">{{$message}}</span>    
                                                                                                 @enderror
                                                                                             </div>
+                                                                                        </div>
+                                                                                        <div class="col-sm-6">
+                                                                                            <div class="mb-3">
+                                                                                                <label class="control-label">Staff Category <span style="color: #e64b4b; margin-left: 5px;">*</span> </label>
+                                                                                                <select style="width: 100%;" class="col-md-12 form-control select2" name="category" value="{{old('category')}}" @error('category')  style="border-color:#e64b4b;" @enderror >
+                                                                                                    <option value="" >Select Staff Category </option>
+                                                                                                    <option @if ($staff_details->category == 'academic') {{'selected '}}@else {{''}} @endif  value="academic">Academic</option>
+                                                                                                    <option @if ($staff_details->category == 'non academic') {{'selected '}}@else {{''}} @endif  value="non academic">Non Academic</option>
+                                                                                                </select>
+                                                                                                @error('category')
+                                                                                                    <span style="color:#e64b4b; font-size: 10px; margin-top:2px;">{{$message}}</span>    
+                                                                                                @enderror
+                                                                                            </div> 
                                                                                         </div>
                                         
                                                                                         <div class="col-sm-6">
@@ -253,7 +269,7 @@
                                                                                             </div>
                                         
                                                                                             <div class="mb-3">
-                                                                                                <label for="manufacturerbrand">Department <span style="color: #e64b4b; margin-left: 5px;">*</span> </label>
+                                                                                                <label for="manufacturerbrand">Department / Unit <span style="color: #e64b4b; margin-left: 5px;">*</span> </label>
                                                                                                 <input id="manufacturerbrand" name="department" placeholder=" Department (e.g VC's office)" type="text" class="form-control" value="{{$staff_details->department}}" @error('department') style="border-color:#e64b4b;" @enderror required>
                                                                                                 @error('department')
                                                                                                     <span style="color:#e64b4b; font-size: 10px; margin-top:2px;">{{$message}}</span>    
@@ -326,6 +342,14 @@
                                                                                                     <span style="color:#e64b4b; font-size: 10px; margin-top:2px;">{{$message}}</span>    
                                                                                                 @enderror
                                                                                             </div>
+
+                                                                                            {{-- <div class="mb-3">
+                                                                                                <label for="date-apoint">Date of Last Appointment <span style="color: #e64b4b; margin-left: 5px;">*</span> </label>
+                                                                                                <input id="date-apoint" name="date_last_appoint" type="date" class="form-control" value="{{$staff_details->date_last_appoint}}" @error('date_last_appoint') style="border-color:#e64b4b;" @enderror required>
+                                                                                                @error('date_last_appoint')
+                                                                                                    <span style="color:#e64b4b; font-size: 10px; margin-top:2px;">{{$message}}</span>    
+                                                                                                @enderror
+                                                                                            </div> --}}
                                         
                                                                                             <div class="mb-3">
                                                                                                 <label for="date-apoint">Date of Present Appointment <span style="color: #e64b4b; margin-left: 5px;">*</span> </label>
@@ -372,12 +396,22 @@
                                                                                                     <option @if ($staff_details->station == 'agaie') {{'selected '}}@else {{''}} @endif value="agaie"> AGAIE</option>
                                                                                                     <option @if ($staff_details->station == 'new bussa') {{'selected '}}@else {{''}} @endif value="new bussa">NEW BUSSA</option>
                                                                                                     <option @if ($staff_details->station == 'ibeto') {{'selected '}}@else {{''}} @endif value="ibeto">IBETO</option>
+                                                                                                    <option @if ($staff_details->station == 'minna') {{'selected '}}@else {{''}} @endif value="minna">MINNA</option>
                                                                                                 </select>
                                                                                                 @error('station')
                                                                                                     <span style="color:#e64b4b; font-size: 10px; margin-top:2px;">{{$message}}</span>    
                                                                                                 @enderror
                                                                                             </div>
                                         
+                                                                                        </div>
+                                                                                        <div class="col-sm-12">
+                                                                                            <div class="mb-3">
+                                                                                                <label for="date-apoint">Date of Confirmation Appointment <span style="color: #e64b4b; margin-left: 5px;">*</span> </label>
+                                                                                                <input id="date-apoint" name="date_confirm_appoint" type="date" class="form-control" value="{{$staff_details->date_confirm_appoint}}" @error('date_confirm_appoint') style="border-color:#e64b4b;" @enderror>
+                                                                                            </div>
+                                                                                            @error('date_confirm_appoint')
+                                                                                                <span style="color:#e64b4b; font-size: 10px; margin-top:2px;">{{$message}}</span>    
+                                                                                            @enderror
                                                                                         </div>
                                                                                     </div>
                                                 
@@ -391,7 +425,6 @@
                                                             </div><!-- /.modal-content -->
                                                         </div><!-- /.modal-dialog -->
                                                     </div><!-- /.modal -->
-
                                                     {{-- activate modal stop --}}
                                                 @endforeach
                                             </tbody>
