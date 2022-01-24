@@ -1,5 +1,3 @@
-{{-- @extends('layout/head')
-@section('title','Promotion Application | IBBUL - Staff Admin Record')   --}}
 <!doctype html>
 <html lang="en"> 
  <head> 
