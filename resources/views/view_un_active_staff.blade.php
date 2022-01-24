@@ -25,7 +25,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                    <h4 class="mb-sm-0 font-size-18">Active Non Academic Staff List</h4>
+                                    <h4 class="mb-sm-0 font-size-18">Un Active Staff Detail</h4>
                                     <div class="page-title-right">
                                         {{-- <ol class="breadcrumb m-0">
                                             <li class="breadcrumb-ite">Staff</a></li>
@@ -53,7 +53,7 @@
                                 <div class="card">
                                     <div class="card-body">
                                         
-                                        <h4 class="card-title">Active Non Academic Staff Detail</h4>
+                                        <h4 class="card-title">Un Active Staff Detail</h4>
                                         <p class="card-title-desc">
                                         </p>
         
@@ -377,7 +377,7 @@
                                                                                             <div class="mb-3">
                                                                                                 <label for="qualification" class="control-label">Grade / Step <span style="color: #e64b4b; margin-left: 5px;">*</span> <code>Current Grade/Step: {{$staff_details->grade_step}} </code> </label>
                                                                                                 <div class="input-daterange input-group" id="datepicker6" data-date-format="dd M, yyyy" data-date-autoclose="true" data-provide="datepicker" data-date-container='#datepicker6'>
-                                                                                                    <input type="number" class="form-control" min="0" name="grade" placeholder="Grade" value="{{old('grade')}}" @error('grade') style="border-color:#e64b4b;" @enderror required/>
+                                                                                                    <input type="number" class="form-control" min="0" name="conuass_or_contiss" placeholder="Grade" value="{{old('grade')}}" @error('grade') style="border-color:#e64b4b;" @enderror required/>
                                                                                                     <input type="number" class="form-control" min="0" name="step" placeholder="Step" value="{{old('step')}}" @error('step') style="border-color:#e64b4b;" @enderror required/>
                                                                                                 </div>
                                                                                                 @error('grade')

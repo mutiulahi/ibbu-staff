@@ -158,9 +158,7 @@ class Dashboard extends Controller
     //  update staff record
     public function update_staff(Request $staff_details)
     {
-        $id = $staff_details->id;
-
-        // dd('kkk');
+        $id = $staff_details->id; 
  
         if ($staff_details->category == 'academic') {
             $grade_steo_input = 'CONUASS '.$staff_details->conuass_or_contiss.' / STEP '.$staff_details->step;

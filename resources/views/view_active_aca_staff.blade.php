@@ -25,7 +25,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                    <h4 class="mb-sm-0 font-size-18">Active Academic Staff List</h4>
+                                    <h4 class="mb-sm-0 font-size-18">Active Non Academic Staff List</h4>
                                     <div class="page-title-right">
                                         {{-- <ol class="breadcrumb m-0">
                                             <li class="breadcrumb-ite">Staff</a></li>
@@ -53,7 +53,7 @@
                                 <div class="card">
                                     <div class="card-body">
                                         
-                                        <h4 class="card-title">Active Academic Staff Detail</h4>
+                                        <h4 class="card-title">Active Non Academic Staff Detail</h4>
                                         <p class="card-title-desc">
                                         </p>
         
@@ -223,7 +223,7 @@
                                                                                 <h4 class="card-title">Staff Information</h4>
                                                                                 <p class="card-title-desc">Fill all information below (The starred (<span style="color: #e64b4b;">*</span>) filed are important) </p>
                                                 
-                                                                                <form action="{{route('update_staff_record')}}" method="post">
+                                                                                <form action="{{route('update_staff_record')}}" method="POST">
 
                                                                                     @csrf
                                                                                     <input type="hidden" name="id" value="{{$staff_details->id}}">
@@ -237,11 +237,10 @@
                                                                                                 @enderror
                                                                                             </div>
                                                                                         </div>
-
                                                                                         <div class="col-sm-6">
                                                                                             <div class="mb-3">
                                                                                                 <label class="control-label">Staff Category <span style="color: #e64b4b; margin-left: 5px;">*</span> </label>
-                                                                                                <select style="width: 100%;" class="col-md-12 form-control" name="category" value="{{old('category')}}" @error('category')  style="border-color:#e64b4b;" @enderror >
+                                                                                                <select style="width: 100%;" class="col-md-12 form-control " name="category" value="{{old('category')}}" @error('category')  style="border-color:#e64b4b;" @enderror >
                                                                                                     <option value="" >Select Staff Category </option>
                                                                                                     <option @if ($staff_details->category == 'academic') {{'selected '}}@else {{''}} @endif  value="academic">Academic</option>
                                                                                                     <option @if ($staff_details->category == 'non academic') {{'selected '}}@else {{''}} @endif  value="non academic">Non Academic</option>
@@ -378,8 +377,8 @@
                                                                                             <div class="mb-3">
                                                                                                 <label for="qualification" class="control-label">Grade / Step <span style="color: #e64b4b; margin-left: 5px;">*</span> <code>Current Grade/Step: {{$staff_details->grade_step}} </code> </label>
                                                                                                 <div class="input-daterange input-group" id="datepicker6" data-date-format="dd M, yyyy" data-date-autoclose="true" data-provide="datepicker" data-date-container='#datepicker6'>
-                                                                                                    <input type="number" class="form-control" min="0" name="conuass_or_contiss" placeholder="Grade"   style="border-color:#e64b4b;" @enderror required/>
-                                                                                                    <input type="number" class="form-control" min="0" name="step" placeholder="Step" value="{{$staff_details->step}}" style="border-color:#e64b4b;" @enderror required/>
+                                                                                                    <input type="number" class="form-control" min="0" name="conuass_or_contiss" placeholder="Grade" value="{{old('grade')}}" @error('grade') style="border-color:#e64b4b;" @enderror required/>
+                                                                                                    <input type="number" class="form-control" min="0" name="step" placeholder="Step" value="{{old('step')}}" @error('step') style="border-color:#e64b4b;" @enderror required/>
                                                                                                 </div>
                                                                                                 @error('grade')
                                                                                                     <span style="color:#e64b4b; font-size: 10px; margin-top:2px;">{{$message}}</span>,
@@ -426,6 +425,7 @@
                                                             </div><!-- /.modal-content -->
                                                         </div><!-- /.modal-dialog -->
                                                     </div><!-- /.modal -->
+
                                                     {{-- activate modal stop --}}
                                                 @endforeach
                                             </tbody>
