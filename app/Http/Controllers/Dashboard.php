@@ -39,7 +39,7 @@ class Dashboard extends Controller
             'name' => 'required',
             'rank' => 'required',
             'department_or_unit' => 'required',
-            'pfn' => 'required|unique:staff',
+            // 'pfn' => 'required|unique:staff',
             'sex' => 'required',
             'date_of_birth' => 'required',
             'state' => 'required',
