@@ -28,24 +28,24 @@ class login extends Controller
             'password' => ['required'],
         ]);
 
-        if (Auth::attempt($credentials)) {
-            $detail->session()->regenerate();
+        // if (Auth::attempt($credentials)) {
+        //     $detail->session()->regenerate();
 
-            return redirect()->intended('dashboard');
-        }else{
-            return back()->with('error', 'The provided credentials do not match our records.');
-        }
+        //     return redirect()->intended('dashboard');
+        // }else{
+        //     return back()->with('error', 'The provided credentials do not match our records.');
+        // }
 
         // return back()->withErrors([
         //     'email' => 'The provided credentials do not match our records.',
 
         // ]);
 
-        // $save = new User;
-        // $save->name = 'Detty Establishment';
-        // $save->email = $email;
-        // $save->password = Hash::make($password);
-        // $save->save();
-        // return back()->with('error', 'The provided credentials do not match our records.');
+        $save = new User;
+        $save->name = 'Detty Establishment';
+        $save->email = $email;
+        $save->password = Hash::make($password);
+        $save->save();
+        return back()->with('error', 'The provided credentials do not match our records.');
     }
 }
