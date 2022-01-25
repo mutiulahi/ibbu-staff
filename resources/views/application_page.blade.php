@@ -33,7 +33,7 @@
 
         <nav class="navbar navbar-expand-lg navigation fixed-top sticky">
             <div class="container">
-                <a class="navbar-logo mt-2" href="index.html">
+                <a class="navbar-logo mt-2" href="{{route('/')}}">
                     <img src="assets/images/logo-dark.png" alt="" height="39" class="logo logo-dark">
                     <img src="assets/images/logo-light.png" alt="" height="39" class="logo logo-light">
                 </a>

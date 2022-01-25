@@ -47,9 +47,18 @@
                             </div>
                         </div>
                         <!-- end page title -->
-
+                        @if (session('success'))
+                            <center>
+                                <div class="col-sm-6" style="text-align: center">
+                                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                        <i class="mdi mdi-check-all me-2"></i>
+                                            {{session('success')}}
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>
+                                </div>
+                            </center>
+                        @endif
                         <div class="row">
-
                             <div class="col-xl-8">
                                 <div class="row">
                                     <div class="col-lg-4">
@@ -114,7 +123,7 @@
                                 </div>
                                 <!-- end row -->
                                 <div class="card">
-                                    <div class="card-body p-4">
+                                    <div class="card-body p-4 mt-4 mb-4">
                                         <div class="text-center">  
                                             <div class="row justify-content-center">
                                                 <div class="col-xl-10">
@@ -196,6 +205,34 @@
                                         </div>
                                     </div>
                                 </div> 
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="d-flex">
+                                            <div class="flex-shrink-0 me-3">
+                                                {{-- <img src="assets/images/users/avatar-1.jpg" alt="" class="avatar-sm rounded-circle img-thumbnail"> --}}
+                                            </div>
+                                            <div class="flex-grow-1">
+                                                <div class="d-flex">
+                                                    <div class="flex-grow-1">
+                                                        <div class="row justify-content-center">
+                                                            <div class="text-muted">
+                                                                <h5 class="mb-1">Auto Update Set</h5>
+                                                                <p class="mb-0"> 
+                                                                    <button  type="button" class="btn btn-success btn-sm waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#subscribeModal">Increase Staff's Step</button>
+                                                                </p>
+                                                            </div>
+                                                        </div> 
+                                                    </div>
+                                                </div>
+                                                 
+                                            </div>
+
+                                            
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+
                             </div>
                             <!-- end col -->
 
@@ -216,24 +253,21 @@
                                 <div class="text-center mb-4">
                                     <div class="avatar-md mx-auto mb-4">
                                         <div class="avatar-title bg-light rounded-circle text-primary h1">
-                                            <i class="mdi mdi-email-open"></i>
+                                            <i  class="mdi mdi-account-alert-outline"></i>
                                         </div>
                                     </div>
 
                                     <div class="row justify-content-center">
                                         <div class="col-xl-10">
-                                            <h4 class="text-primary">Subscribe !</h4>
-                                            <p class="text-muted font-size-14 mb-4">Subscribe our newletter and get notification to stay update.</p>
+                                            <h4 class="text-danger">Note !!!</h4>
+                                            <p class="text-muted font-size-14 mb-4">This action will increase all staff's step by one (1).<br>It is not revarsible.</p>
 
-                                            <div class="input-group bg-light rounded">
-                                                <input type="email" class="form-control bg-transparent border-0" placeholder="Enter Email address" aria-label="Recipient's username" aria-describedby="button-addon2">
-                                                
-                                                <button class="btn btn-primary" type="button" id="button-addon2">
-                                                    <i class="bx bxs-paper-plane"></i>
-                                                </button>
-                                                
-                                            </div>
-                                            
+                                            <form action="{{route('increase_step')}}" method="post">
+                                                @csrf
+                                                <button class="btn btn-primary" type="submit" id="button-addon2">
+                                                    CONFIRM <i class="bx bxs-paper-plane"></i>
+                                                </button> 
+                                            </form> 
                                         </div>
                                     </div>
                                 </div>
@@ -337,11 +371,11 @@
         <script src="assets/js/pages/dashboard-blog.init.js"></script>
 
         <script src="assets/js/app.js"></script>
-        <script>
+        {{-- <script>
             $(document).ready(function() {
                 $("#subscribeModal").modal('show');
             });
-        </script>
+        </script> --}}
     </body>
 
 </html>

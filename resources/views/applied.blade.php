@@ -130,7 +130,7 @@
                                                         <td>{{$staff_application->date_confirm_appoint}}</td>
                                                         <td>{{$staff_application->date_present_appoint}}</td>
                                                         <td>{{$staff_application->rank}}</td>
-                                                        <td>{{$staff_application->grade_step}}</td>
+                                                        <td>{{$staff_application->grade_step}} / STEP {{$staff_application->step}}</td>
                                                         <td>{{$staff_application->session}}</td> 
                                                         <td>{{$staff_application->application_number}}</td> 
                                                         <td>{{$staff_application->created_at}}</td>

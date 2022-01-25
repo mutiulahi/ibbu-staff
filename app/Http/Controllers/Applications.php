@@ -71,9 +71,9 @@ class Applications extends Controller
     public function accept_app(Request $pfn_num)
     {
         if ($pfn_num->category == "academic") {
-            $grade_step_input = 'CONUASS '.$pfn_num->grade.' / STEP '.$pfn_num->step;
+            $grade_step_input = 'CONUASS '.$pfn_num->grade;
         } else {
-            $grade_step_input =  'CONTISS '.$pfn_num->grade.' / STEP '.$pfn_num->step;
+            $grade_step_input =  'CONTISS '.$pfn_num->grade;
         }
         $last_date = date('Y-m-d');
 
@@ -83,8 +83,7 @@ class Applications extends Controller
 
         $upgrade_application = DB::table('staff')
                     ->where('PFN',$pfn_num->pfn)
-                    ->update(['grade_step' =>$grade_step_input, 'rank' =>$pfn_num->rank, 'date_present_appoint'=>$last_date]);
-
+                    ->update(['grade_step' =>$grade_step_input, 'step' => $pfn_num->step, 'rank' =>$pfn_num->rank, 'date_present_appoint'=>$last_date]);
 
         return redirect()->route('applied')->with('success','Staff promotion successfully accepted');
 

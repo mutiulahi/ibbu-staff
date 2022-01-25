@@ -133,7 +133,7 @@
                                                         </td>
                                                         <td>{{$staff_details->name}}</td>
                                                         <td>{{$staff_details->qualification}}</td>
-                                                        <td>{{$staff_details->grade_step}}</td>
+                                                        <td>{{$staff_details->grade_step}} / STEP {{$staff_details->step}}</td>
                                                         <td>{{$staff_details->PFN}}</td>
                                                         <td>{{$staff_details->sex}}</td>
                                                         <td>{{$staff_details->rank}}</td> 

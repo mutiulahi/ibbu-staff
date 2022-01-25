@@ -57,13 +57,10 @@ class Dashboard extends Controller
         ]); 
 
         if ($staff_details->category == 'academic') {
-            $grade_steo_input = 'CONUASS '.$staff_details->conuass_or_contiss.' / STEP '.$staff_details->step;
+            $grade_steo_input = 'CONUASS '.$staff_details->conuass_or_contiss;
         } else {
-            $grade_steo_input = 'CONTISS '.$staff_details->conuass_or_contiss.' / STEP '.$staff_details->step;
-        }
-        
-        
-
+            $grade_steo_input = 'CONTISS '.$staff_details->conuass_or_contiss;
+        } 
 
         $save_staff_details = new Staff;
         $save_staff_details->email = $staff_details->email;
@@ -81,6 +78,7 @@ class Dashboard extends Controller
         $save_staff_details->date_present_appoint = $staff_details->date_present_appoint;
         $save_staff_details->date_confirm_appoint = $staff_details->date_confirm_appoint;
         $save_staff_details->grade_step = $grade_steo_input;
+        $save_staff_details->step = $staff_details->step;
         $save_staff_details->station = $staff_details->station;
         $save_staff_details->category = $staff_details->category; 
         $save_staff_details->status = "1";
@@ -161,9 +159,9 @@ class Dashboard extends Controller
         $id = $staff_details->id; 
  
         if ($staff_details->category == 'academic') {
-            $grade_steo_input = 'CONUASS '.$staff_details->conuass_or_contiss.' / STEP '.$staff_details->step;
+            $grade_steo_input = 'CONUASS '.$staff_details->conuass_or_contiss;
         } else {
-            $grade_steo_input = 'CONTISS '.$staff_details->conuass_or_contiss.' / STEP '.$staff_details->step;
+            $grade_steo_input = 'CONTISS '.$staff_details->conuass_or_contiss;
         }
 
         Staff::where('id',$id)
@@ -183,9 +181,19 @@ class Dashboard extends Controller
                 'date_confirm_appoint' => $staff_details->date_confirm_appoint,
                 'date_present_appoint' => $staff_details->date_present_appoint,
                 'grade_step' => $grade_steo_input,
+                'step' => $staff_details->step,
                 'station' => $staff_details->station,
                 'category' => $staff_details->category, 
             ]);
         return back()->with('success','Staff Record Successfully Updated');
     } 
+
+
+    // 
+    public function increase()
+    {
+        $staff = DB::table('staff')->increment('step');
+        return back()->with('success','All Staff Step Have increased by One(1) Step.');
+        
+    }
 }

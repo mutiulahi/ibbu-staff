@@ -63,4 +63,8 @@ Route::post('dashboard/accept', [Applications::class, 'accept_app'])->middleware
 
 
 
+//increase step
+
+Route::post('dashboard/increase',[Dashboard::class, 'increase'])->middleware('auth')->name('increase_step');
+
 
