@@ -39,7 +39,7 @@ class Dashboard extends Controller
             'name' => 'required',
             'rank' => 'required',
             'department_or_unit' => 'required',
-            'pfn' => 'required|unique:staff',
+            'PFN' => 'required|unique:staff',
             'sex' => 'required',
             'date_of_birth' => 'required',
             'state' => 'required',
@@ -67,7 +67,7 @@ class Dashboard extends Controller
         $save_staff_details->name = $staff_details->name;
         $save_staff_details->rank = $staff_details->rank;
         $save_staff_details->department = $staff_details->department_or_unit;
-        $save_staff_details->PFN = $staff_details->pfn;
+        $save_staff_details->PFN = $staff_details->PFN;
         $save_staff_details->sex = $staff_details->sex;
         $save_staff_details->DOB = $staff_details->date_of_birth;
         $save_staff_details->state = $staff_details->state;
@@ -147,7 +147,7 @@ class Dashboard extends Controller
     public function staff_status(Request $status) 
     {
         $new_status = $status->status; 
-        $PFN = $status->pfn; 
+        $PFN = $status->PFN; 
         Staff::where('PFN',$PFN)
             ->update(['status' =>$new_status]);
         return redirect()->back()->with('success','Staff Status Successfully Updated');
@@ -170,7 +170,7 @@ class Dashboard extends Controller
                 'name' => $staff_details->name,
                 'rank' => $staff_details->rank,
                 'department' => $staff_details->department,
-                'PFN' => $staff_details->pfn,
+                'PFN' => $staff_details->PFN,
                 'sex' => $staff_details->sex,
                 'DOB' => $staff_details->date_of_birth,
                 'state' => $staff_details->state,

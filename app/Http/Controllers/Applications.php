@@ -21,14 +21,14 @@ class Applications extends Controller
         $application_number = date('Ymd').rand(100,999); 
 
         $applicationDetails->validate([
-            'pfn'=>'required|exists:staff|unique:applications',
+            'PFN'=>'required|exists:staff|unique:applications',
         ]);
 
         $save_application = new Application();
         $save_application->session = $session;
         $save_application->app_status = 'pending';
         $save_application->application_number = $application_number;
-        $save_application->PFN=$applicationDetails->pfn;
+        $save_application->PFN=$applicationDetails->PFN;
         $save_application->save();
 
         return back()->with('success', 'Your Application has been successfully submitted');
