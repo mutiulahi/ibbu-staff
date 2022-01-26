@@ -93,8 +93,8 @@
                                             <center>
                                                 <div class="col-sm-6">
                                                     <div class="mb-3">
-                                                        <input id="price" name="pfn" type="number" placeholder="Please Enter Your PFN" class="form-control" value="{{old('pfn')}}" @error('pfn') style="border-color:#e64b4b;" @enderror>
-                                                        @error('pfn')
+                                                        <input id="price" name="PFN" type="number" placeholder="Please Enter Your PFN" class="form-control" value="{{old('pfn')}}" @error('pfn') style="border-color:#e64b4b;" @enderror>
+                                                        @error('PFN')
                                                             <span style="color:#e64b4b; font-size: 10px; margin-top:2px;">{{$message}}</span>    
                                                         @enderror
                                                     </div>

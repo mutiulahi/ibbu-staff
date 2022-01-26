@@ -140,8 +140,8 @@
                                                     
                                                     <div class="mb-3">
                                                         <label for="price">PFN <span style="color: #e64b4b; margin-left: 5px;">*</span> </label>
-                                                        <input id="price" name="pfn" type="number" min="0" placeholder="12323" class="form-control" value="{{old('pfn')}}" @error('pfn') style="border-color:#e64b4b;" @enderror>
-                                                        @error('pfn')
+                                                        <input id="price" name="PFN" type="number" min="0" placeholder="12323" class="form-control" value="{{old('PFN')}}" @error('PFN') style="border-color:#e64b4b;" @enderror>
+                                                        @error('PFN')
                                                             <span style="color:#e64b4b; font-size: 10px; margin-top:2px;">{{$message}}</span>    
                                                         @enderror
                                                     </div>
