@@ -138,7 +138,7 @@
                                                     </code></p>
 
                                                     <div class="input-group bg-light rounded">
-                                                        <span class="form-control bg-transparent border-0"> <code>localhost</code> </span>
+                                                        <span class="form-control bg-transparent border-0"> <code>https://ibbu-staff-record.herokuapp.com/application</code> </span>
                                                     </div>
                                                     <div style="margin-left: 30%; margin-top:10px;">
                                                         <div class="input-daterange input-group" id="datepicker6" data-date-format="dd M, yyyy" data-date-autoclose="true" data-provide="datepicker" data-date-container='#datepicker6'>
@@ -281,11 +281,11 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-sm-6">
-                                <script>document.write(new Date().getFullYear())</script> © Skote.
+                                <script>document.write(new Date().getFullYear())</script> © IBBUL STAFF RECORD.
                             </div>
                             <div class="col-sm-6">
                                 <div class="text-sm-end d-none d-sm-block">
-                                    Design & Develop by Themesbrand
+                                    Design & Develop by Tescodepro
                                 </div>
                             </div>
                         </div>

@@ -129,11 +129,7 @@ class Dashboard extends Controller
         $select_me = DB::table('pages')->get();
         if (sizeof($select_me)>0) {
             $promotion_pages = DB::table('pages') 
-                ->update(['promotion_page' =>$status]);
-
-            // Page::where()
-            //     ->update(['promotion_page' =>$status]);
-
+                ->update(['promotion_page' =>$status]);  
         }else {
             $save_status = new Page;
             $save_status->promotion_page = $status;

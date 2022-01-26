@@ -12,7 +12,8 @@ class Applications extends Controller
 
     public function application_index()
     { 
-        return view('application_page');
+        $page_status = DB::table('pages')->get(); 
+        return view('application_page', ['page_status' => $page_status]);
     }
 
     public function application_action(Request $applicationDetails)
