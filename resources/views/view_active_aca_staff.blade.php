@@ -167,11 +167,17 @@
                                                                             @if ($staff_details->status == '1')
                                                                                 active
                                                                             @elseif($staff_details->status == '2')
-                                                                                fired
+                                                                                withdrew
                                                                             @elseif($staff_details->status == '3')
-                                                                                suspension
+                                                                                terminatted
                                                                             @elseif($staff_details->status == '4')
-                                                                                deactive
+                                                                                dismissed
+                                                                            @elseif($staff_details->status == '5')
+                                                                                dead
+                                                                            @elseif($staff_details->status == '6')
+                                                                                retired
+                                                                            @elseif($staff_details->status == '7')
+                                                                                abscond
                                                                             @endif        
                                                                         </h2>
                                                                         <form action="{{route('staff_status')}}" method="post">
@@ -182,9 +188,12 @@
                                                                                 <div class="input-group auth-pass-inputgroup">
                                                                                    <select class="form-control" name="status" id="" required>
                                                                                         <option value="">Choose...</option>
-                                                                                        <option value="2">Fired</option>
-                                                                                        <option value="3">Suspension</option>
-                                                                                        <option value="4">Deactive</option>
+                                                                                        <option value="2">Withdrew</option>
+                                                                                        <option value="3">Terminatted</option>
+                                                                                        <option value="4">Dismissed</option>
+                                                                                        <option value="5">Dead</option>
+                                                                                        <option value="6">Retired</option>
+                                                                                        <option value="7">Abscond</option>
                                                                                    </select>
                                                                                 </div> 
                                                                             </div> 
@@ -216,11 +225,17 @@
                                                                             @if ($staff_details->status == '1')
                                                                                 active
                                                                             @elseif($staff_details->status == '2')
-                                                                                fired
+                                                                                withdrew
                                                                             @elseif($staff_details->status == '3')
-                                                                                suspension
+                                                                                terminatted
                                                                             @elseif($staff_details->status == '4')
-                                                                                deactive
+                                                                                dismissed
+                                                                            @elseif($staff_details->status == '5')
+                                                                                dead
+                                                                            @elseif($staff_details->status == '6')
+                                                                                retired
+                                                                            @elseif($staff_details->status == '7')
+                                                                                abscond
                                                                             @endif        
                                                                         </h2>
                                                                         <form action="{{route('staff_status')}}" method="post">
@@ -305,7 +320,7 @@
                                                                                             
                                                                                             <div class="mb-3">
                                                                                                 <label for="price">PFN <span style="color: #e64b4b; margin-left: 5px;">*</span> </label>
-                                                                                                <input id="price" name="pfn" type="number" min="0" placeholder="12323" class="form-control" value="{{$staff_details->PFN}}" @error('pfn') style="border-color:#e64b4b;" @enderror required>
+                                                                                                <input id="price" name="PFN" type="number" min="0" placeholder="12323" class="form-control" value="{{$staff_details->PFN}}" @error('pfn') style="border-color:#e64b4b;" @enderror required>
                                                                                                 @error('pfn')
                                                                                                     <span style="color:#e64b4b; font-size: 10px; margin-top:2px;">{{$message}}</span>    
                                                                                                 @enderror
@@ -356,7 +371,8 @@
                                                                                         <div class="col-sm-6">
                                                                                             <div class="mb-3">
                                                                                                 <label class="form-label">Qualification <span style="color: #e64b4b; margin-left: 5px;">*</span></label>
-                                                                                                <input id="date-apoint" name="qualification" type="text" placeholder="Qualification (BSc.Computer, BSc. Science ...)" class="form-control" value="{{$staff_details->qualification}}"  required>
+                                                                                                {{-- <input id="date-apoint" name="qualification" type="text" placeholder="Qualification (BSc.Computer, BSc. Science ...)" class="form-control" value="{{$staff_details->qualification}}"  required> --}}
+                                                                                                <textarea name="qualification" id="" class="form-control" cols="30" rows="5" required>{{$staff_details->qualification}}</textarea>
                                                                                                 @error('qualification')
                                                                                                     <span style="color:#e64b4b; font-size: 10px; margin-top:2px;">{{$message}}</span>    
                                                                                                 @enderror
@@ -402,7 +418,7 @@
                                                                                             </div>
                                         
                                                                                             <div class="mb-3">
-                                                                                                <label for="qualification" class="control-label">Grade / Step <span style="color: #e64b4b; margin-left: 5px;">*</span> <code>Current Grade/Step: {{$staff_details->grade_step}} </code> </label>
+                                                                                                <label for="qualification" class="control-label">Grade / Step <span style="color: #e64b4b; margin-left: 5px;">*</span> <code>{{$staff_details->grade_step}} / STEP {{$staff_details->step}}</code> </label>
                                                                                                 <div class="input-daterange input-group" id="datepicker6" data-date-format="dd M, yyyy" data-date-autoclose="true" data-provide="datepicker" data-date-container='#datepicker6'>
                                                                                                     <input type="number" class="form-control" min="0" name="conuass_or_contiss" placeholder="Grade" value="{{old('grade')}}" @error('grade') style="border-color:#e64b4b;" @enderror required/>
                                                                                                     <input type="number" class="form-control" min="0" name="step" placeholder="Step" value="{{old('step')}}" @error('step') style="border-color:#e64b4b;" @enderror required/>
@@ -429,19 +445,15 @@
                                                                                                     <span style="color:#e64b4b; font-size: 10px; margin-top:2px;">{{$message}}</span>    
                                                                                                 @enderror
                                                                                             </div>
-                                        
-                                                                                        </div>
-                                                                                        <div class="col-sm-12">
                                                                                             <div class="mb-3">
-                                                                                                <label for="date-apoint">Date of Confirmation Appointment <span style="color: #e64b4b; margin-left: 5px;">*</span> </label>
+                                                                                                <label for="date-apoint">Date of Confirmation of Appointment <span style="color: #e64b4b; margin-left: 5px;">*</span> </label>
                                                                                                 <input id="date-apoint" name="date_confirm_appoint" type="date" class="form-control" value="{{$staff_details->date_confirm_appoint}}" @error('date_confirm_appoint') style="border-color:#e64b4b;" @enderror>
+                                                                                                @error('date_confirm_appoint')
+                                                                                                    <span style="color:#e64b4b; font-size: 10px; margin-top:2px;">{{$message}}</span>    
+                                                                                                @enderror
                                                                                             </div>
-                                                                                            @error('date_confirm_appoint')
-                                                                                                <span style="color:#e64b4b; font-size: 10px; margin-top:2px;">{{$message}}</span>    
-                                                                                            @enderror
-                                                                                        </div>
-                                                                                    </div>
-                                                
+                                                                                        </div> 
+                                                                                    </div> 
                                                                                     <div class="d-flex flex-wrap gap-2">
                                                                                         <button type="submit" class="btn btn-primary waves-effect waves-light">Save</button>
                                                                                     </div>

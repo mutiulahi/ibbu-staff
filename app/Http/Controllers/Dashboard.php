@@ -12,10 +12,18 @@ class Dashboard extends Controller
     public function index()
     {
         $select_me = DB::table('pages')->get();
-        $total_app_prom = DB::table('applications')->count();
+
+        $total_app_prom = DB::table('staff')->where('category', 'academic')->where('status', '1')->count();
+
         $staff = DB::table('staff')->count();
-        $total_app_accept = DB::table('applications')->where('app_status','accept')->count();
-        $total_app_reject = DB::table('applications')->where('app_status','reject')->count();
+        $total_app_accept = DB::table('staff')->where('category', 'non academic')->where('status', '1')->count();
+        $total_app_reject = DB::table('staff')->orWhere('status', '2')
+                                              ->orWhere('status', '3')
+                                              ->orWhere('status', '4')
+                                              ->orWhere('status', '5')
+                                              ->orWhere('status', '6')
+                                              ->orWhere('status', '7')
+                                              ->count();
         return view('dashboard',compact('select_me'),['staff'=>$staff,'total_app_prom'=>$total_app_prom, 'total_app_accept'=>$total_app_accept, 'total_app_reject'=>$total_app_reject]);
 
     }
@@ -115,8 +123,11 @@ class Dashboard extends Controller
     {
         $fetch_staff = DB::table('staff')
                         ->where('status','2')
-                        ->orWhere('status','3')
-                        ->orWhere('status','4') 
+                        ->orWhere('status', '3')
+                        ->orWhere('status', '4')
+                        ->orWhere('status', '5')
+                        ->orWhere('status', '6')
+                        ->orWhere('status', '7')
                         ->get();
 
         return view('view_un_active_staff', ['fetch_staff' => $fetch_staff]);

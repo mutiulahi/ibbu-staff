@@ -67,7 +67,7 @@
                                                 
                                                 <div class="d-flex flex-wrap">
                                                     <div class="me-3">
-                                                        <p class="text-muted mb-2">Total Promotion </p>
+                                                        <p class="text-muted mb-2">Academic  </p>
                                                         <h5 class="mb-0">{{$total_app_prom}}</h5>
                                                     </div>
     
@@ -88,7 +88,7 @@
 
                                                 <div class="d-flex flex-wrap">
                                                     <div class="me-3">
-                                                        <p class="text-muted mb-2">Approved Pro... </p>
+                                                        <p class="text-muted mb-2">Non Academic</p>
                                                         <h5 class="mb-0">{{$total_app_accept}}</h5>
                                                     </div>
     
@@ -107,7 +107,7 @@
                                             <div class="card-body">
                                                 <div class="d-flex flex-wrap">
                                                     <div class="me-3">
-                                                        <p class="text-muted mb-2">Rejected Pro... </p>
+                                                        <p class="text-muted mb-2">Un Active </p>
                                                         <h5 class="mb-0">{{$total_app_reject}}</h5>
                                                     </div>
     

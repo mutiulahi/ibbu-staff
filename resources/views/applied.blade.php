@@ -197,6 +197,14 @@
                                                                                     </div>
                                                                                      
                                                                                 </div> 
+
+                                                                                <div class="mb-3">
+                                                                                    <label class="form-label">Date of Last Promotion</label>
+                                                                                    <div class="input-group auth-pass-inputgroup">
+                                                                                        <input type="date" class="form-control" name="date" placeholder="Next Rank" required>
+                                                                                    </div> 
+                                                                                </div> 
+                                                                                
                                                                                 <button class="btn btn-sm btn-warning mt-3 mb-4">Confirm</button>
                                                                             </form>
                                                                         </center>

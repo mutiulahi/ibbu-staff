@@ -190,13 +190,21 @@
                                                                                         <input type="number" class="form-control" name="step" placeholder="Step" required>
                                                                                     </div>
                                                                                 </div> 
+
                                                                                 <div class="mb-3">
                                                                                     <label class="form-label">Change the <b> Rank </b></label>
                                                                                     <div class="input-group auth-pass-inputgroup">
                                                                                         <input type="text" class="form-control" name="rank" placeholder="Next Rank" required>
-                                                                                    </div>
-                                                                                     
+                                                                                    </div> 
                                                                                 </div> 
+
+                                                                                <div class="mb-3">
+                                                                                    <label class="form-label">Date of Last Promotion</label>
+                                                                                    <div class="input-group auth-pass-inputgroup">
+                                                                                        <input type="date" class="form-control" name="date" placeholder="Next Rank" required>
+                                                                                    </div> 
+                                                                                </div> 
+
                                                                                 <button class="btn btn-sm btn-warning mt-3 mb-4">Confirm</button>
                                                                             </form>
                                                                         </center>

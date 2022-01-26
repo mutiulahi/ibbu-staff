@@ -76,7 +76,7 @@ class Applications extends Controller
         } else {
             $grade_step_input =  'CONTISS '.$pfn_num->grade;
         }
-        $last_date = date('Y-m-d');
+        // $last_date = $pfn_num->date;
 
        $approve_application = DB::table('applications')
                     ->where('PFN',$pfn_num->pfn)
@@ -84,7 +84,7 @@ class Applications extends Controller
 
         $upgrade_application = DB::table('staff')
                     ->where('PFN',$pfn_num->pfn)
-                    ->update(['grade_step' =>$grade_step_input, 'step' => $pfn_num->step, 'rank' =>$pfn_num->rank, 'date_present_appoint'=>$last_date]);
+                    ->update(['grade_step' =>$grade_step_input, 'step' => $pfn_num->step, 'rank' =>$pfn_num->rank, 'date_present_appoint'=>$pfn_num->date]);
 
         return redirect()->route('applied')->with('success','Staff promotion successfully accepted');
 

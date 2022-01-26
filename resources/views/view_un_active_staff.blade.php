@@ -119,16 +119,23 @@
                                                             <button type="button" class="btn btn-success btn-sm waves-effect waves-light" data-bs-toggle="modal" data-bs-target=".bs-example-modal-sm{{$staff_details->PFN}}activate"><i class="fas fa-check-circle"></i></button>
                                                             <button type="button" class="btn btn-secondary btn-sm waves-effect waves-light" data-bs-toggle="modal" data-bs-target=".bs-example-modal-sm{{$staff_details->PFN}}details"><i class="fas fa-edit"></i></button>
                                                         </td>
-                                                        <td>
-                                                            @if ($staff_details->status == '1') 
+                                                        <td> 
+
+                                                            @if ($staff_details->status == '1')
                                                                 <span class="badge badge-pill badge-soft-success font-size-12">Active</span>
-                                                            @elseif($staff_details->status == '2') 
-                                                                <span class="badge badge-pill badge-soft-danger font-size-12">Fired</span>
-                                                            @elseif($staff_details->status == '3') 
-                                                                <span class="badge badge-pill badge-soft-warning font-size-12">Suspension</span>
-                                                            @elseif($staff_details->status == '4') 
-                                                                <span class="badge badge-pill badge-soft-danger font-size-12">Deactive</span>
-                                                            @endif
+                                                            @elseif($staff_details->status == '2')
+                                                                <span class="badge badge-pill badge-soft-danger font-size-12">Withdrew</span>
+                                                            @elseif($staff_details->status == '3')
+                                                                <span class="badge badge-pill badge-soft-danger font-size-12">Terminatted</span>
+                                                            @elseif($staff_details->status == '4')
+                                                                <span class="badge badge-pill badge-soft-danger font-size-12">Dismissed</span>
+                                                            @elseif($staff_details->status == '5')
+                                                                <span class="badge badge-pill badge-soft-danger font-size-12">Dead</span>
+                                                            @elseif($staff_details->status == '6')
+                                                                <span class="badge badge-pill badge-soft-danger font-size-12">Retired</span>
+                                                            @elseif($staff_details->status == '7')
+                                                                <span class="badge badge-pill badge-soft-danger font-size-12">Abscond</span>
+                                                        @endif  
                                                             {{-- {{$staff_details->status}} --}}
                                                         </td>
                                                         <td>{{$staff_details->name}}</td>
@@ -149,91 +156,106 @@
                                                         
                                                     </tr>
 
-                                                      {{-- Deactivate modal start --}}
-                                                      <div class="modal fade bs-example-modal-sm{{$staff_details->PFN}}deactivate" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-                                                        <div class="modal-dialog modal-sm">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <h5 class="modal-title text-danger" id="mySmallModalLabel">Reject Application</h5>
-                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                                </div>
-                                                                <div class="modal-body">
-                                                                    <center>
-                                                                        <h4 class="text-danger mb-4">Are sure of this action!!!</h4>
-                                                                        <h5>Changing Staff Status</h5>
-                                                                        <h5 class="text-primary">PFN {{$staff_details->PFN}}</h5>
-                                                                        <h5 class="text-success"> Current Status:</h5>
-                                                                        <h2>
-                                                                            @if ($staff_details->status == '1')
-                                                                                active
-                                                                            @elseif($staff_details->status == '2')
-                                                                                fired
-                                                                            @elseif($staff_details->status == '3')
-                                                                                suspension
-                                                                            @elseif($staff_details->status == '4')
-                                                                                deactive
-                                                                            @endif        
-                                                                        </h2>
-                                                                        <form action="{{route('staff_status')}}" method="post">
-                                                                            @csrf
-                                                                            <input type="hidden" name="pfn" value="{{$staff_details->PFN}}">
-                                                                            <div class="mb-3">
-                                                                                <label class="form-label">Select Staff Status</b></label>
-                                                                                <div class="input-group auth-pass-inputgroup">
-                                                                                   <select class="form-control" name="status" id="" required>
-                                                                                        <option value="">Choose...</option>
-                                                                                        <option value="2">Fired</option>
-                                                                                        <option value="3">Suspension</option>
-                                                                                        <option value="4">Deactive</option>
-                                                                                   </select>
-                                                                                </div> 
+                                                  {{-- Deactivate modal start --}}
+                                                  <div class="modal fade bs-example-modal-sm{{$staff_details->PFN}}deactivate" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog modal-sm">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title text-danger" id="mySmallModalLabel">Reject Application</h5>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <center>
+                                                                    <h4 class="text-danger mb-4">Are sure of this action!!!</h4>
+                                                                    <h5>Changing Staff Status</h5>
+                                                                    <h5 class="text-primary">PFN {{$staff_details->PFN}}</h5>
+                                                                    <h5 class="text-success"> Current Status:</h5>
+                                                                    <h2>
+                                                                        @if ($staff_details->status == '1')
+                                                                            active
+                                                                        @elseif($staff_details->status == '2')
+                                                                            withdrew
+                                                                        @elseif($staff_details->status == '3')
+                                                                            terminatted
+                                                                        @elseif($staff_details->status == '4')
+                                                                            dismissed
+                                                                        @elseif($staff_details->status == '5')
+                                                                            dead
+                                                                        @elseif($staff_details->status == '6')
+                                                                            retired
+                                                                        @elseif($staff_details->status == '7')
+                                                                            abscond
+                                                                        @endif        
+                                                                    </h2>
+                                                                    <form action="{{route('staff_status')}}" method="post">
+                                                                        @csrf
+                                                                        <input type="hidden" name="pfn" value="{{$staff_details->PFN}}">
+                                                                        <div class="mb-3">
+                                                                            <label class="form-label">Select Staff Status</b></label>
+                                                                            <div class="input-group auth-pass-inputgroup">
+                                                                               <select class="form-control" name="status" id="" required>
+                                                                                    <option value="">Choose...</option>
+                                                                                    <option value="2">Withdrew</option>
+                                                                                    <option value="3">Terminatted</option>
+                                                                                    <option value="4">Dismissed</option>
+                                                                                    <option value="5">Dead</option>
+                                                                                    <option value="6">Retired</option>
+                                                                                    <option value="7">Abscond</option>
+                                                                               </select>
                                                                             </div> 
-                                                                            <button class="btn btn-sm btn-warning mt-3 mb-4">Confirm</button>
-                                                                        </form>
-                                                                    </center>
-                                                                </div>
-                                                            </div><!-- /.modal-content -->
-                                                        </div><!-- /.modal-dialog -->
-                                                    </div>
-                                                    {{-- Deactivate modal stop --}}
+                                                                        </div> 
+                                                                        <button class="btn btn-sm btn-warning mt-3 mb-4">Confirm</button>
+                                                                    </form>
+                                                                </center>
+                                                            </div>
+                                                        </div><!-- /.modal-content -->
+                                                    </div><!-- /.modal-dialog -->
+                                                </div>
+                                                {{-- Deactivate modal stop --}}
 
 
-                                                    {{-- activate modal start --}}
-                                                    <div class="modal fade bs-example-modal-sm{{$staff_details->PFN}}activate" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-                                                        <div class="modal-dialog modal-sm">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <h5 class="modal-title text-warning" id="mySmallModalLabel">Approve Application</h5>
-                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                                </div>
-                                                                <div class="modal-body">
-                                                                    <center>
-                                                                        <h4 class="text-warning mb-4">Are sure of this action!!!</h4>
-                                                                        <h4>Activating Staff Record Status</h4>
-                                                                        <h5 class="text-primary">PFN {{$staff_details->PFN}}</h5>
-                                                                        <h5 class="text-success"> Current Status:</h5>
-                                                                        <h2>
-                                                                            @if ($staff_details->status == '1')
-                                                                                active
-                                                                            @elseif($staff_details->status == '2')
-                                                                                fired
-                                                                            @elseif($staff_details->status == '3')
-                                                                                suspension
-                                                                            @elseif($staff_details->status == '4')
-                                                                                deactive
-                                                                            @endif        
-                                                                        </h2>
-                                                                        <form action="{{route('staff_status')}}" method="post">
-                                                                            @csrf
-                                                                            <input type="hidden" name="pfn" value="{{$staff_details->PFN}}">
-                                                                            <input type="hidden" name="status" value="1">
-                                                                            <button class="btn btn-sm btn-success mt-3 mb-4">Activate Staff</button>
-                                                                        </form>
-                                                                    </center>
-                                                                </div>
-                                                            </div><!-- /.modal-content -->
-                                                        </div><!-- /.modal-dialog -->
-                                                    </div>
+                                                {{-- activate modal start --}}
+                                                <div class="modal fade bs-example-modal-sm{{$staff_details->PFN}}activate" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog modal-sm">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title text-warning" id="mySmallModalLabel">Approve Application</h5>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <center>
+                                                                    <h4 class="text-warning mb-4">Are sure of this action!!!</h4>
+                                                                    <h4>Activating Staff Record Status</h4>
+                                                                    <h5 class="text-primary">PFN {{$staff_details->PFN}}</h5>
+                                                                    <h5 class="text-success"> Current Status:</h5>
+                                                                    <h2>
+                                                                        @if ($staff_details->status == '1')
+                                                                            active
+                                                                        @elseif($staff_details->status == '2')
+                                                                            withdrew
+                                                                        @elseif($staff_details->status == '3')
+                                                                            terminatted
+                                                                        @elseif($staff_details->status == '4')
+                                                                            dismissed
+                                                                        @elseif($staff_details->status == '5')
+                                                                            dead
+                                                                        @elseif($staff_details->status == '6')
+                                                                            retired
+                                                                        @elseif($staff_details->status == '7')
+                                                                            abscond
+                                                                        @endif        
+                                                                    </h2>
+                                                                    <form action="{{route('staff_status')}}" method="post">
+                                                                        @csrf
+                                                                        <input type="hidden" name="pfn" value="{{$staff_details->PFN}}">
+                                                                        <input type="hidden" name="status" value="1">
+                                                                        <button class="btn btn-sm btn-success mt-3 mb-4">Activate Staff</button>
+                                                                    </form>
+                                                                </center>
+                                                            </div>
+                                                        </div><!-- /.modal-content -->
+                                                    </div><!-- /.modal-dialog -->
+                                                </div>
 
 
 
@@ -250,7 +272,7 @@
                                                                                 <h4 class="card-title">Staff Information</h4>
                                                                                 <p class="card-title-desc">Fill all information below (The starred (<span style="color: #e64b4b;">*</span>) filed are important) </p>
                                                 
-                                                                                <form accept="{{route('update_staff_record')}}" method="post">
+                                                                                <form action="{{route('update_staff_record')}}" method="POST">
 
                                                                                     @csrf
                                                                                     <input type="hidden" name="id" value="{{$staff_details->id}}">
@@ -267,7 +289,7 @@
                                                                                         <div class="col-sm-6">
                                                                                             <div class="mb-3">
                                                                                                 <label class="control-label">Staff Category <span style="color: #e64b4b; margin-left: 5px;">*</span> </label>
-                                                                                                <select style="width: 100%;" class="col-md-12 form-control select2" name="category" value="{{old('category')}}" @error('category')  style="border-color:#e64b4b;" @enderror >
+                                                                                                <select style="width: 100%;" class="col-md-12 form-control " name="category" value="{{old('category')}}" @error('category')  style="border-color:#e64b4b;" @enderror >
                                                                                                     <option value="" >Select Staff Category </option>
                                                                                                     <option @if ($staff_details->category == 'academic') {{'selected '}}@else {{''}} @endif  value="academic">Academic</option>
                                                                                                     <option @if ($staff_details->category == 'non academic') {{'selected '}}@else {{''}} @endif  value="non academic">Non Academic</option>
@@ -305,7 +327,7 @@
                                                                                             
                                                                                             <div class="mb-3">
                                                                                                 <label for="price">PFN <span style="color: #e64b4b; margin-left: 5px;">*</span> </label>
-                                                                                                <input id="price" name="pfn" type="number" min="0" placeholder="12323" class="form-control" value="{{$staff_details->PFN}}" @error('pfn') style="border-color:#e64b4b;" @enderror required>
+                                                                                                <input id="price" name="PFN" type="number" min="0" placeholder="12323" class="form-control" value="{{$staff_details->PFN}}" @error('pfn') style="border-color:#e64b4b;" @enderror required>
                                                                                                 @error('pfn')
                                                                                                     <span style="color:#e64b4b; font-size: 10px; margin-top:2px;">{{$message}}</span>    
                                                                                                 @enderror
@@ -356,7 +378,8 @@
                                                                                         <div class="col-sm-6">
                                                                                             <div class="mb-3">
                                                                                                 <label class="form-label">Qualification <span style="color: #e64b4b; margin-left: 5px;">*</span></label>
-                                                                                                <input id="date-apoint" name="qualification" type="text" placeholder="Qualification (BSc.Computer, BSc. Science ...)" class="form-control" value="{{$staff_details->qualification}}"  required>
+                                                                                                {{-- <input id="date-apoint" name="qualification" type="text" placeholder="Qualification (BSc.Computer, BSc. Science ...)" class="form-control" value="{{$staff_details->qualification}}"  required> --}}
+                                                                                                <textarea name="qualification" id="" class="form-control" cols="30" rows="5" required>{{$staff_details->qualification}}</textarea>
                                                                                                 @error('qualification')
                                                                                                     <span style="color:#e64b4b; font-size: 10px; margin-top:2px;">{{$message}}</span>    
                                                                                                 @enderror
@@ -402,7 +425,7 @@
                                                                                             </div>
                                         
                                                                                             <div class="mb-3">
-                                                                                                <label for="qualification" class="control-label">Grade / Step <span style="color: #e64b4b; margin-left: 5px;">*</span> <code>Current Grade/Step: {{$staff_details->grade_step}} </code> </label>
+                                                                                                <label for="qualification" class="control-label">Grade / Step <span style="color: #e64b4b; margin-left: 5px;">*</span> <code>{{$staff_details->grade_step}} / STEP {{$staff_details->step}}</code> </label>
                                                                                                 <div class="input-daterange input-group" id="datepicker6" data-date-format="dd M, yyyy" data-date-autoclose="true" data-provide="datepicker" data-date-container='#datepicker6'>
                                                                                                     <input type="number" class="form-control" min="0" name="conuass_or_contiss" placeholder="Grade" value="{{old('grade')}}" @error('grade') style="border-color:#e64b4b;" @enderror required/>
                                                                                                     <input type="number" class="form-control" min="0" name="step" placeholder="Step" value="{{old('step')}}" @error('step') style="border-color:#e64b4b;" @enderror required/>
@@ -429,19 +452,15 @@
                                                                                                     <span style="color:#e64b4b; font-size: 10px; margin-top:2px;">{{$message}}</span>    
                                                                                                 @enderror
                                                                                             </div>
-                                        
-                                                                                        </div>
-                                                                                        <div class="col-sm-12">
                                                                                             <div class="mb-3">
-                                                                                                <label for="date-apoint">Date of Confirmation Appointment <span style="color: #e64b4b; margin-left: 5px;">*</span> </label>
+                                                                                                <label for="date-apoint">Date of Confirmation of Appointment <span style="color: #e64b4b; margin-left: 5px;">*</span> </label>
                                                                                                 <input id="date-apoint" name="date_confirm_appoint" type="date" class="form-control" value="{{$staff_details->date_confirm_appoint}}" @error('date_confirm_appoint') style="border-color:#e64b4b;" @enderror>
+                                                                                                @error('date_confirm_appoint')
+                                                                                                    <span style="color:#e64b4b; font-size: 10px; margin-top:2px;">{{$message}}</span>    
+                                                                                                @enderror
                                                                                             </div>
-                                                                                            @error('date_confirm_appoint')
-                                                                                                <span style="color:#e64b4b; font-size: 10px; margin-top:2px;">{{$message}}</span>    
-                                                                                            @enderror
-                                                                                        </div>
-                                                                                    </div>
-                                                
+                                                                                        </div> 
+                                                                                    </div> 
                                                                                     <div class="d-flex flex-wrap gap-2">
                                                                                         <button type="submit" class="btn btn-primary waves-effect waves-light">Save</button>
                                                                                     </div>
