@@ -196,7 +196,7 @@
                                                 <div class="col-sm-6">
                                                     <div class="mb-3">
                                                         <label class="form-label">Qualification <span style="color: #e64b4b; margin-left: 5px;">*</span></label>
-                                                        <input id="price" name="qualification" type="text" class="form-control" placeholder="Local Government Area" value="{{old('qualification')}}"  @error('qualification') style="border-color:#e64b4b;" @enderror>
+                                                        <textarea name="qualification" @error('qualification') style="border-color:#e64b4b;" @enderror class="form-control" cols="30" rows="5">{{old('qualification')}}</textarea>
                                                         @error('qualification')
                                                             <span style="color:#e64b4b; font-size: 10px; margin-top:2px;">{{$message}}</span>    
                                                         @enderror
@@ -264,16 +264,14 @@
                                                             <span style="color:#e64b4b; font-size: 10px; margin-top:2px;">{{$message}}</span>    
                                                         @enderror
                                                     </div> 
-                                                </div>
-                                                <div class="col-sm-12">
                                                     <div class="mb-3">
                                                         <label for="date-apoint">Date of Confirmation Appointment <span style="color: #e64b4b; margin-left: 5px;">*</span> </label>
                                                         <input id="date-apoint" name="date_confirm_appoint" type="date" class="form-control" value="{{old('date_confirm_appoint')}}" @error('date_confirm_appoint') style="border-color:#e64b4b;" @enderror>
+                                                        @error('date_confirm_appoint')
+                                                            <span style="color:#e64b4b; font-size: 10px; margin-top:2px;">{{$message}}</span>    
+                                                        @enderror
                                                     </div>
-                                                    @error('date_confirm_appoint')
-                                                        <span style="color:#e64b4b; font-size: 10px; margin-top:2px;">{{$message}}</span>    
-                                                    @enderror
-                                                </div>
+                                                </div> 
                                             </div>
         
                                             <div class="d-flex flex-wrap gap-2">

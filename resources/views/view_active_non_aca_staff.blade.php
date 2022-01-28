@@ -46,7 +46,7 @@
             <!-- ============================================================== -->
             <div class="main-content">
 
-                <div class="page-content">
+                <div class="page-content mb-5">
                     <div class="container-fluid">
 
                         <!-- start page title -->
@@ -78,7 +78,7 @@
                                                 </div>
                                             </center>
                                         @endif
-                                <div class="card">
+                                <div class="card mb-5" >
                                     <div class="card-body">
                                         
                                         <h4 class="card-title">Non Academic Staff Detail</h4>
@@ -241,7 +241,7 @@
                                                                         </h2>
                                                                         <form action="{{route('staff_status')}}" method="post">
                                                                             @csrf
-                                                                            <input type="hidden" name="pfn" value="{{$staff_details->PFN}}">
+                                                                            <input type="hidden" name="PFN" value="{{$staff_details->PFN}}">
                                                                             <input type="hidden" name="status" value="1">
                                                                             <button class="btn btn-sm btn-success mt-3 mb-4">Activate Staff</button>
                                                                         </form>
@@ -322,7 +322,7 @@
                                                                                             <div class="mb-3">
                                                                                                 <label for="price">PFN <span style="color: #e64b4b; margin-left: 5px;">*</span> </label>
                                                                                                 <input id="price" name="PFN" type="number" min="0" placeholder="12323" class="form-control" value="{{$staff_details->PFN}}" @error('pfn') style="border-color:#e64b4b;" @enderror required>
-                                                                                                @error('pfn')
+                                                                                                @error('PFN')
                                                                                                     <span style="color:#e64b4b; font-size: 10px; margin-top:2px;">{{$message}}</span>    
                                                                                                 @enderror
                                                                                             </div>
@@ -474,6 +474,7 @@
                                 </div>
                             </div> <!-- end col -->
                         </div> <!-- end row -->
+                        <div style="margin-bottom: 300px;"></div>
 
                         
                     </div> <!-- container-fluid -->
@@ -481,7 +482,7 @@
                 <!-- End Page-content -->
 
                 
-                <footer class="footer">
+                <footer class="footer mt-5">
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-sm-6">

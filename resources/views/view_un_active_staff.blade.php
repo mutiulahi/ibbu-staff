@@ -189,7 +189,7 @@
                                                                     </h2>
                                                                     <form action="{{route('staff_status')}}" method="post">
                                                                         @csrf
-                                                                        <input type="hidden" name="pfn" value="{{$staff_details->PFN}}">
+                                                                        <input type="hidden" name="PFN" value="{{$staff_details->PFN}}">
                                                                         <div class="mb-3">
                                                                             <label class="form-label">Select Staff Status</b></label>
                                                                             <div class="input-group auth-pass-inputgroup">
@@ -247,7 +247,7 @@
                                                                     </h2>
                                                                     <form action="{{route('staff_status')}}" method="post">
                                                                         @csrf
-                                                                        <input type="hidden" name="pfn" value="{{$staff_details->PFN}}">
+                                                                        <input type="hidden" name="PFN" value="{{$staff_details->PFN}}">
                                                                         <input type="hidden" name="status" value="1">
                                                                         <button class="btn btn-sm btn-success mt-3 mb-4">Activate Staff</button>
                                                                     </form>
@@ -328,7 +328,7 @@
                                                                                             <div class="mb-3">
                                                                                                 <label for="price">PFN <span style="color: #e64b4b; margin-left: 5px;">*</span> </label>
                                                                                                 <input id="price" name="PFN" type="number" min="0" placeholder="12323" class="form-control" value="{{$staff_details->PFN}}" @error('pfn') style="border-color:#e64b4b;" @enderror required>
-                                                                                                @error('pfn')
+                                                                                                @error('PFN')
                                                                                                     <span style="color:#e64b4b; font-size: 10px; margin-top:2px;">{{$message}}</span>    
                                                                                                 @enderror
                                                                                             </div>
@@ -480,7 +480,7 @@
                                 </div>
                             </div> <!-- end col -->
                         </div> <!-- end row -->
-
+                        <div style="margin-bottom: 300px;"></div>
                         
                     </div> <!-- container-fluid -->
                 </div>
