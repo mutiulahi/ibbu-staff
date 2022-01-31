@@ -49,3 +49,4 @@ class login extends Controller
         // return back()->with('error', 'The provided credentials do not match our records.');
     }
 }
+?>
