@@ -92,7 +92,7 @@
                                     @endif
 
                                    <form action="{{route('application')}}" method="post">
-                                        @csrf
+                                    {{ csrf_field() }}
                                         <h3 class="mt-5">Enter your PFN to apply for promotion :</h3>
 
 
