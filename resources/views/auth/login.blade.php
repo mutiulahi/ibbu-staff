@@ -82,8 +82,7 @@
                                 @endif
                                 <div class="p-2">
                                     <form class="form-horizontal" action="{{route('/')}}" method="POST">
-                                        {{-- @csrf --}}
-                                        {{ csrf_field() }}
+                                        @csrf
                                         <div class="mb-3">
                                             <label for="Email" class="form-label">Email</label>
                                             <input type="email" class="form-control" id="Email" name="email" placeholder="Enter Email">
